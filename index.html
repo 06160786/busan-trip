@@ -199,44 +199,55 @@
             text-align: center;
         }
 
-        /* 翻譯頁面樣式 */
+        /* 翻譯頁面固定頂部區塊 */
+        .sticky-translate-box {
+            position: sticky;
+            top: 0;
+            background-color: var(--bg-color);
+            z-index: 50;
+            padding-bottom: 10px;
+            padding-top: 5px;
+        }
+
         .translate-textarea {
             width: 100%;
-            height: 70px;
+            height: 60px;
             padding: 10px;
             border-radius: 10px;
             border: 1px solid var(--primary-light);
             font-size: 1rem;
             resize: none;
             outline: none;
+            background-color: var(--card-bg);
         }
         .korean-result {
             background-color: var(--primary-light);
-            padding: 16px;
+            padding: 14px;
             border-radius: 10px;
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-weight: bold;
             color: #4A3F35;
             text-align: center;
-            min-height: 75px;
+            min-height: 65px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: 10px;
+            margin-top: 8px;
             line-height: 1.4;
+            box-shadow: 0 4px 10px rgba(212, 163, 115, 0.1);
         }
         .trans-link-btn {
             display: block;
             width: 100%;
-            padding: 10px;
+            padding: 8px;
             background-color: var(--primary-color);
             color: white;
             text-align: center;
             border-radius: 8px;
             text-decoration: none;
             font-weight: bold;
-            margin-top: 10px;
-            font-size: 0.95rem;
+            margin-top: 8px;
+            font-size: 0.9rem;
         }
         .trans-grid {
             display: grid;
@@ -251,7 +262,7 @@
             border-radius: 8px;
             cursor: pointer;
             text-align: left;
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             color: var(--text-main);
             transition: 0.2s;
             line-height: 1.3;
@@ -266,6 +277,28 @@
             color: var(--primary-color);
             border-left: 4px solid var(--primary-color);
             padding-left: 8px;
+        }
+
+        /* 行程頁面可愛宣示標語 */
+        .oath-banner {
+            background: linear-gradient(135deg, #FFFDF9 0%, #FAEDCD 100%);
+            border: 1px solid #E8D7B8;
+            border-radius: 14px;
+            padding: 12px 14px;
+            margin-bottom: 16px;
+            white-space: nowrap;
+            overflow-x: auto;
+            scrollbar-width: none;
+            box-shadow: 0 4px 12px rgba(212, 163, 115, 0.1);
+            text-align: center;
+        }
+        .oath-banner::-webkit-scrollbar { display: none; }
+        .oath-text {
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: #6C5E50;
+            display: inline-block;
+            letter-spacing: 0.5px;
         }
 
         /* 行程樣式 */
@@ -308,7 +341,7 @@
             <button class="nav-tab active" onclick="switchPage(1, '💡 旅遊資訊')">💡 資訊</button>
             <button class="nav-tab" onclick="switchPage(2, '💰 匯率計算')">💰 匯率</button>
             <button class="nav-tab" onclick="switchPage(3, '📅 6天行程')">📅 行程</button>
-            <button class="nav-tab" onclick="switchPage(4, '🗣️ 韓文翻譯')">🗣️ 翻譯</button>
+            <button class="nav-tab" onclick="switchPage(4, '🗣️ 翻譯')">🗣️ 翻譯</button>
         </div>
     </div>
 
@@ -412,7 +445,11 @@
 
         <!-- 頁面 3：行程說明 -->
         <div id="page-3" class="page">
-            <h2>6天精選行程</h2>
+            <!-- 宣示標語 -->
+            <div class="oath-banner">
+                <span class="oath-text">📢 我發誓！每天笑嘻嘻，有耐心，累了就休息，餓了就吃！</span>
+            </div>
+
             <div class="day-tabs">
                 <button class="day-tab-btn active" onclick="switchDay(1)">Day 1 (11/29)</button>
                 <button class="day-tab-btn" onclick="switchDay(2)">Day 2 (11/30)</button>
@@ -435,69 +472,75 @@
             <div id="day-6" class="day-content"><div class="cream-card" style="text-align: center; padding: 30px;"><p style="color: var(--text-sub);">Day 6 行程準備中...</p></div></div>
         </div>
 
-        <!-- 頁面 4：中韓雙向翻譯 (全中文完整句型 + 標準禮貌敬語) -->
+        <!-- 頁面 4：翻譯 (置頂固定 + 完整 1~5人選項) -->
         <div id="page-4" class="page">
-            <h2>中韓雙向翻譯 (有禮貌敬語版)</h2>
-            <div class="cream-card">
-                <p style="color: var(--text-sub); margin-bottom: 8px; font-size: 0.9rem;">自由輸入你想翻譯的中文：</p>
-                <textarea id="user-translate-input" class="translate-textarea" placeholder="在此輸入中文..." oninput="handleCustomTranslate()"></textarea>
-                <div id="korean-output" class="korean-result">點選下方分類按鈕，或輸入文字</div>
-                <a id="google-trans-link" href="https://translate.google.com/?sl=zh-TW&tl=ko&text=" target="_blank" class="trans-link-btn" style="display: none;">🌐 點擊前往 Google 翻譯此句</a>
-            </div>
-
-            <!-- 分類一：用餐點餐 -->
-            <div class="cream-card">
-                <div class="section-title">🍽️ 用餐點餐與人數</div>
-                <div class="trans-grid" style="margin-bottom: 8px;">
-                    <button class="trans-btn" onclick="setTranslate('請問現在有位子嗎？', '자리 있어요? (賈莉 伊搜唷？)')">🙋 請問現在有位子嗎？</button>
-                    <button class="trans-btn" onclick="setTranslate('請問這裡有中文菜單嗎？', '중국어 메뉴판 있어요? (中文選單 伊搜唷？)')">📖 請問有中文菜單嗎？</button>
-                </div>
-                <p style="font-size: 0.85rem; color: var(--text-sub); margin: 6px 0 4px 0;">餐廳報人數：</p>
-                <div class="trans-grid">
-                    <button class="trans-btn" onclick="setTranslate('我們總共是 1 位，謝謝。', '1명이요 (一脈唷)')">👤 我們是 1 位</button>
-                    <button class="trans-btn" onclick="setTranslate('我們總共是 2 位，謝謝。', '2명이요 (依脈唷)')">👥 我們是 2 位</button>
-                    <button class="trans-btn" onclick="setTranslate('我們總共是 3 位，謝謝。', '3명이요 (撒脈唷)')">👥 我們是 3 位</button>
-                    <button class="trans-btn" onclick="setTranslate('我們總共是 4 位，謝謝。', '4명이요 (內脈唷)')">👥 我們是 4 位</button>
-                </div>
-                <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
-                    <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請給我一杯水，謝謝。', '물 좀 주세요, 감사합니다. (莫 鍾 主些喲)')">💧 請給我一杯水，謝謝</button>
-                    <button class="trans-btn" style="width:100%" onclick="setTranslate('請問這個會辣嗎？請不要加辣，謝謝。', '이거 매워요? 맵지 않게 해주세요. (辣嗎？不辣主些喲)')">🌶️ 這個會辣嗎？請不要加辣</button>
-                    <button class="trans-btn" style="width:100%" onclick="setTranslate('真的非常好吃，謝謝你們！', '잘 먹었습니다! (查 目 勾 思 補 尼 大)')">😋 真的非常好吃，謝謝招待</button>
-                    <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請幫我結帳，謝謝。', '계산해주세요. (計算主些喲)')">💳 不好意思，請幫我結帳</button>
+            <!-- 置頂固定區塊 -->
+            <div class="sticky-translate-box">
+                <div class="cream-card" style="margin-bottom: 0; box-shadow: 0 6px 20px rgba(212, 163, 115, 0.15);">
+                    <p style="color: var(--text-sub); margin-bottom: 6px; font-size: 0.85rem;">自由輸入你想翻譯的中文：</p>
+                    <textarea id="user-translate-input" class="translate-textarea" placeholder="在此輸入中文..." oninput="handleCustomTranslate()"></textarea>
+                    <div id="korean-output" class="korean-result">點選下方分類按鈕，或輸入文字</div>
+                    <a id="google-trans-link" href="https://translate.google.com/?sl=zh-TW&tl=ko&text=" target="_blank" class="trans-link-btn" style="display: none;">🌐 點擊前往 Google 翻譯此句</a>
                 </div>
             </div>
 
-            <!-- 分類二：購物與免稅 -->
-            <div class="cream-card">
-                <div class="section-title">🛍️ 購物與免稅 (Tax Free)</div>
-                <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請問這裡可以辦理退稅嗎？', '여기 택스 프리 되나요? (Tax Free 兌拿唷？)')">🏷️ 請問這裡可以退稅嗎？</button>
-                    <button class="trans-btn" style="width:100%" onclick="setTranslate('請問消費滿多少金額才可以退稅呢？', '얼마 이상 사야 택스 프리가 되나요? (多少錢以上可Tax Free？)')">💰 請問消費滿多少可以退稅？</button>
-                    <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請幫我準備退稅單，謝謝。', '택스 프리 서류 챙겨주세요. (請準備退稅文件)')">🧾 請幫我開立退稅單，謝謝</button>
-                    <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請問這個大約多少錢呢？', '이거 얼마예요? (這 歐媽耶唷？)')">💵 請問這個大約多少錢？</button>
-                    <button class="trans-btn" style="width:100%" onclick="setTranslate('不用裝袋沒關係，謝謝您。', '봉투는 안 주셔도 됩니다. (不用給袋子)')">🛍️ 不用裝袋沒關係，謝謝</button>
+            <!-- 下方分類按鈕區域 -->
+            <div style="margin-top: 15px;">
+                <!-- 分類一：用餐點餐 -->
+                <div class="cream-card">
+                    <div class="section-title">🍽️ 用餐點餐與人數</div>
+                    <div class="trans-grid" style="margin-bottom: 8px;">
+                        <button class="trans-btn" onclick="setTranslate('請問現在有位子嗎？', '자리 있어요? (賈莉 伊搜唷？)')">🙋 請問現在有位子嗎？</button>
+                        <button class="trans-btn" onclick="setTranslate('請問這裡有中文菜單嗎？', '중국어 메뉴판 있어요? (中文選單 伊搜唷？)')">📖 請問有中文菜單嗎？</button>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-sub); margin: 6px 0 4px 0;">餐廳報人數（我們共 5 人）：</p>
+                    <div class="trans-grid">
+                        <button class="trans-btn" onclick="setTranslate('我們總共是 1 位，謝謝。', '1명이요 (一脈唷)')">👤 我們是 1 位</button>
+                        <button class="trans-btn" onclick="setTranslate('我們總共是 2 位，謝謝。', '2명이요 (依脈唷)')">👥 我們是 2 位</button>
+                        <button class="trans-btn" onclick="setTranslate('我們總共是 3 位，謝謝。', '3명이요 (撒脈唷)')">👥 我們是 3 位</button>
+                        <button class="trans-btn" onclick="setTranslate('我們總共是 4 位，謝謝。', '4명이요 (內脈唷)')">👥 我們是 4 位</button>
+                        <button class="trans-btn" onclick="setTranslate('我們總共是 5 位，謝謝。', '5명이요 (塔特脈唷)')">👨‍👩‍👧‍👦 我們是 5 位</button>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
+                        <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請給我一杯水，謝謝。', '물 좀 주세요, 감사합니다. (莫 鍾 主些喲)')">💧 請給我一杯水，謝謝</button>
+                        <button class="trans-btn" style="width:100%" onclick="setTranslate('請問這個會辣嗎？請不要加辣，謝謝。', '이거 매워요? 맵지 않게 해주세요. (辣嗎？不辣主些喲)')">🌶️ 這個會辣嗎？請不要加辣</button>
+                        <button class="trans-btn" style="width:100%" onclick="setTranslate('真的非常好吃，謝謝你們！', '잘 먹었습니다! (查 目 勾 思 補 尼 大)')">😋 真的非常好吃，謝謝招待</button>
+                        <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請幫我結帳，謝謝。', '계산해주세요. (計算主些喲)')">💳 不好意思，請幫我結帳</button>
+                    </div>
                 </div>
-            </div>
 
-            <!-- 分類三：問路與交通 -->
-            <div class="cream-card">
-                <div class="section-title">🗺️ 問路與交通</div>
-                <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請問洗手間/廁所在哪裡呢？', '화장실이 어디에 있어요? (華裝室 伊地 伊搜唷？)')">🚻 請問洗手間/廁所在哪裡？</button>
-                    <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請載我到這個地址，謝謝。', '이 주소로 가주세요. (請去這個地址)')">🚕 請載我到這個地址，謝謝</button>
-                    <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請問這裡可以搭地鐵嗎？', '여기서 지하철을 탈 수 있나요? (這裡能搭地鐵嗎？)')">🚇 請問這裡可以搭地鐵嗎？</button>
-                    <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請在這裡讓我下車，謝謝。', '여기서 내려주세요. (請在這裡放我下來)')">🛑 請在這裡讓我下車，謝謝</button>
+                <!-- 分類二：購物與免稅 -->
+                <div class="cream-card">
+                    <div class="section-title">🛍️ 購物與免稅 (Tax Free)</div>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請問這裡可以辦理退稅嗎？', '여기 택스 프리 되나요? (Tax Free 兌拿唷？)')">🏷️ 請問這裡可以退稅嗎？</button>
+                        <button class="trans-btn" style="width:100%" onclick="setTranslate('請問消費滿多少金額才可以退稅呢？', '얼마 이상 사야 택스 프리가 되나요? (多少錢以上可Tax Free？)')">💰 請問消費滿多少可以退稅？</button>
+                        <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請幫我準備退稅單，謝謝。', '택스 프리 서류 챙겨주세요. (請準備退稅文件)')">🧾 請幫我開立退稅單，謝謝</button>
+                        <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請問這個大約多少錢呢？', '이거 얼마예요? (這 歐媽耶唷？)')">💵 請問這個大約多少錢？</button>
+                        <button class="trans-btn" style="width:100%" onclick="setTranslate('不用裝袋沒關係，謝謝您。', '봉투는 안 주셔도 됩니다. (不用給袋子)')">🛍️ 不用裝袋沒關係，謝謝</button>
+                    </div>
                 </div>
-            </div>
 
-            <!-- 分類四：基本禮貌與應急 -->
-            <div class="cream-card">
-                <div class="section-title">✨ 基本禮貌與應急</div>
-                <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <button class="trans-btn" style="width:100%" onclick="setTranslate('您好，謝謝您！', '안녕하세요 / 감사합니다 (安妞哈希唷 / 監沙哈密達)')">👋 您好 / 謝謝您</button>
-                    <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請問一下......', '실례합니다 / 저기요 (失禮哈密達 / 揪gi喲)')">🗣️ 不好意思，請問一下</button>
-                    <button class="trans-btn" style="width:100%" onclick="setTranslate('真的非常對不起、不好意思。', '죄송합니다 (崔宋哈密達)')">🙇 真不好意思 / 很抱歉</button>
-                    <button class="trans-btn" style="width:100%" onclick="setTranslate('拜託請幫幫我！', '살려주세요 / 도와주세요! (請救命 / 請幫幫我！)')">🚨 拜託請幫幫我！(緊急)</button>
+                <!-- 分類三：問路與交通 -->
+                <div class="cream-card">
+                    <div class="section-title">🗺️ 問路與交通</div>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請問洗手間/廁所在哪裡呢？', '화장실이 어디에 있어요? (華裝室 伊地 伊搜唷？)')">🚻 請問洗手間/廁所在哪裡？</button>
+                        <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請載我到這個地址，謝謝。', '이 주소로 가주세요. (請去這個地址)')">🚕 請載我到這個地址，謝謝</button>
+                        <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請問這裡可以搭地鐵嗎？', '여기서 지하철을 탈 수 있나요? (這裡能搭地鐵嗎？)')">🚇 請問這裡可以搭地鐵嗎？</button>
+                        <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請在這裡讓我下車，謝謝。', '여기서 내려주세요. (請在這裡放我下來)')">🛑 請在這裡讓我下車，謝謝</button>
+                    </div>
+                </div>
+
+                <!-- 分類四：基本禮貌與應急 -->
+                <div class="cream-card">
+                    <div class="section-title">✨ 基本禮貌與應急</div>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <button class="trans-btn" style="width:100%" onclick="setTranslate('您好，謝謝您！', '안녕하세요 / 감사합니다 (安妞哈希唷 / 監沙哈密達)')">👋 您好 / 謝謝您</button>
+                        <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請問一下......', '실례합니다 / 저기요 (失禮哈密達 / 揪gi喲)')">🗣️ 不好意思，請問一下</button>
+                        <button class="trans-btn" style="width:100%" onclick="setTranslate('真的非常對不起、不好意思。', '죄송합니다 (崔宋哈密達)')">🙇 真不好意思 / 很抱歉</button>
+                        <button class="trans-btn" style="width:100%" onclick="setTranslate('拜託請幫幫我！', '살려주세요 / 도와주세요! (請救命 / 請幫幫我！)')">🚨 拜託請幫幫我！(緊急)</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -552,11 +595,11 @@
             return;
         }
 
-        // 僅保留基本日常短句的字典，其餘交由 Google 翻譯連結
         const dict = {
             '你好': '안녕하세요',
             '謝謝': '감사합니다',
             '多少錢': '얼마예요?',
+            '哈哈哈': 'ㅋㅋ (呵呵)'
         };
 
         if(dict[text]) {
