@@ -65,7 +65,7 @@
         .app-header {
             padding: 16px 24px 8px 24px;
             text-align: center;
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             font-weight: bold;
             color: var(--text-main);
         }
@@ -108,7 +108,7 @@
             flex: 1;
             overflow-y: auto;
             padding: 20px;
-            padding-bottom: 40px;
+            padding-bottom: 80px; /* 增加底部留白，避免手機工具列遮擋 */
         }
 
         .page {
@@ -286,18 +286,13 @@
             border-radius: 14px;
             padding: 12px 14px;
             margin-bottom: 16px;
-            white-space: nowrap;
-            overflow-x: auto;
-            scrollbar-width: none;
-            box-shadow: 0 4px 12px rgba(212, 163, 115, 0.1);
             text-align: center;
+            box-shadow: 0 4px 12px rgba(212, 163, 115, 0.1);
         }
-        .oath-banner::-webkit-scrollbar { display: none; }
         .oath-text {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: bold;
             color: #6C5E50;
-            display: inline-block;
             letter-spacing: 0.5px;
         }
 
@@ -341,7 +336,7 @@
             <button class="nav-tab active" onclick="switchPage(1, '💡 旅遊資訊')">💡 資訊</button>
             <button class="nav-tab" onclick="switchPage(2, '💰 匯率計算')">💰 匯率</button>
             <button class="nav-tab" onclick="switchPage(3, '📅 6天行程')">📅 行程</button>
-            <button class="nav-tab" onclick="switchPage(4, '🗣️ 翻譯')">🗣️ 翻譯</button>
+            <button class="nav-tab" onclick="switchPage(4, '🗣️ 翻譯')">🗣️️ 翻譯</button>
         </div>
     </div>
 
@@ -349,7 +344,7 @@
 
         <!-- 頁面 1：資訊 -->
         <div id="page-1" class="page active">
-            <h2>去回航班資訊</h2>
+            <h2>🐯 明知山有虎，偏往釜山行</h2>
             
             <div class="ticket-card">
                 <div class="ticket-header">
@@ -419,7 +414,7 @@
             </div>
 
             <h2>行李檢查清單</h2>
-            <div class="cream-card">
+            <div class="cream-card" style="margin-bottom: 40px;">
                 <div style="display: flex; flex-direction: column; gap: 12px;">
                     <label style="font-size: 1rem;"><input type="checkbox" style="transform: scale(1.2); margin-right: 10px;"> 護照 (效期需滿 6 個月以上)</label>
                     <label style="font-size: 1rem;"><input type="checkbox" style="transform: scale(1.2); margin-right: 10px;"> 機票與飯店預訂單</label>
@@ -447,7 +442,7 @@
         <div id="page-3" class="page">
             <!-- 宣示標語 -->
             <div class="oath-banner">
-                <span class="oath-text">📢 我發誓！每天笑嘻嘻，有耐心，累了就休息，餓了就吃！</span>
+                <span class="oath-text">📢 明知山有虎，偏往釜山行！</span>
             </div>
 
             <div class="day-tabs">
@@ -472,12 +467,12 @@
             <div id="day-6" class="day-content"><div class="cream-card" style="text-align: center; padding: 30px;"><p style="color: var(--text-sub);">Day 6 行程準備中...</p></div></div>
         </div>
 
-        <!-- 頁面 4：翻譯 (置頂固定 + 完整 1~5人選項) -->
+        <!-- 頁面 4：翻譯 -->
         <div id="page-4" class="page">
             <!-- 置頂固定區塊 -->
             <div class="sticky-translate-box">
                 <div class="cream-card" style="margin-bottom: 0; box-shadow: 0 6px 20px rgba(212, 163, 115, 0.15);">
-                    <p style="color: var(--text-sub); margin-bottom: 6px; font-size: 0.85rem;">自由輸入你想翻譯的中文：</p>
+                    <p style="color: var(--text-sub); margin-bottom: 6px; font-size: 0.85rem;">안녕하세요~ 대만에서 왔어요 (❤️)</p>
                     <textarea id="user-translate-input" class="translate-textarea" placeholder="在此輸入中文..." oninput="handleCustomTranslate()"></textarea>
                     <div id="korean-output" class="korean-result">點選下方分類按鈕，或輸入文字</div>
                     <a id="google-trans-link" href="https://translate.google.com/?sl=zh-TW&tl=ko&text=" target="_blank" class="trans-link-btn" style="display: none;">🌐 點擊前往 Google 翻譯此句</a>
@@ -511,13 +506,13 @@
 
                 <!-- 分類二：購物與免稅 -->
                 <div class="cream-card">
-                    <div class="section-title">🛍️ 購物與免稅 (Tax Free)</div>
+                    <div class="section-title">🛍️️ 購物與免稅 (Tax Free)</div>
                     <div style="display: flex; flex-direction: column; gap: 8px;">
                         <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請問這裡可以辦理退稅嗎？', '여기 택스 프리 되나요? (Tax Free 兌拿唷？)')">🏷️ 請問這裡可以退稅嗎？</button>
                         <button class="trans-btn" style="width:100%" onclick="setTranslate('請問消費滿多少金額才可以退稅呢？', '얼마 이상 사야 택스 프리가 되나요? (多少錢以上可Tax Free？)')">💰 請問消費滿多少可以退稅？</button>
                         <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請幫我準備退稅單，謝謝。', '택스 프리 서류 챙겨주세요. (請準備退稅文件)')">🧾 請幫我開立退稅單，謝謝</button>
                         <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請問這個大約多少錢呢？', '이거 얼마예요? (這 歐媽耶唷？)')">💵 請問這個大約多少錢？</button>
-                        <button class="trans-btn" style="width:100%" onclick="setTranslate('不用裝袋沒關係，謝謝您。', '봉투는 안 주셔도 됩니다. (不用給袋子)')">🛍️ 不用裝袋沒關係，謝謝</button>
+                        <button class="trans-btn" style="width:100%" onclick="setTranslate('不用裝袋沒關係，謝謝您。', '봉투는 안 주셔도 됩니다. (不用給袋子)')">🛍️️ 不用裝袋沒關係，謝謝</button>
                     </div>
                 </div>
 
