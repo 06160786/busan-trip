@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>釜山溫馨之旅 11/29 - 12/04</title>
+    <style>
+        :root {
+            --bg-color: #FBF9F5;
+            --card-bg: #FFFFFF;
+            --primary-color: #D4A373;
+            --primary-light: #FAEDCD;
+            --text-main: #5C5346;
+            --text-sub: #8C8275;
+            --border-radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .phone-container {
+            width: 100%;
+            max-width: 430px;
+            height: 100vh;
+            max-height: 932px;
+            background-color: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        @media (min-width: 431px) {
+            .phone-container {
+                border-radius: 40px;
+                border: 10px solid #E3DCD0;
+                height: 88vh;
+            }
+        }
+
+        .app-header {
+            padding: 20px 24px 12px 24px;
+            background-color: var(--bg-color);
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--text-main);
+            border-bottom: 1px solid rgba(212, 163, 115, 0.2);
+        }
+
+        .content-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            padding-bottom: 90px;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+
+        .cream-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 15px rgba(212, 163, 115, 0.08);
+            border: 1px solid rgba(250, 237, 205, 0.6);
+        }
+
+        /* 機票風格卡片 */
+        .ticket-card {
+            background: linear-gradient(135deg, #FFFDF9 0%, #FAEDCD 100%);
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 16px;
+            border: 1px solid #E8D7B8;
+            box-shadow: 0 4px 12px rgba(212, 163, 115, 0.1);
+        }
+        .ticket-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            border-bottom: 1px dashed rgba(212, 163, 115, 0.4);
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+        }
+        .ticket-body {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+        }
+        .ticket-city {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        .ticket-time {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #4A3F35;
+            margin-top: 4px;
+        }
+        .ticket-sub {
+            font-size: 0.75rem;
+            color: var(--text-sub);
+            margin-top: 2px;
+        }
+        .ticket-arrow {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+        .ticket-footer {
+            margin-top: 12px;
+            padding-top: 8px;
+            border-top: 1px dashed rgba(212, 163, 115, 0.4);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-sub);
+        }
+
+        /* 導覽列 */
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 75px;
+            background-color: var(--card-bg);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 1px solid rgba(212, 163, 115, 0.2);
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.03);
+            z-index: 100;
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-sub);
+            font-size: 0.75rem;
+            transition: 0.2s;
+        }
+        .nav-item span.icon {
+            font-size: 1.3rem;
+            margin-bottom: 4px;
+        }
+        .nav-item.active {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* 導航頁面輸入框 */
+        .nav-input-group {
+            margin-bottom: 12px;
+        }
+        .nav-input-group label {
+            display: block;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+            color: var(--text-sub);
+            font-weight: bold;
+        }
+        .nav-input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid var(--primary-light);
+            outline: none;
+            font-size: 1rem;
+            background-color: var(--card-bg);
+        }
+        .search-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 6px;
+        }
+
+        /* 匯率輸入框 */
+        .currency-input {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.2rem;
+            border-radius: 10px;
+            border: 1px solid var(--primary-light);
+            margin-top: 8px;
+            outline: none;
+            text-align: center;
+        }
+
+        /* 翻譯輸入框 */
+        .translate-textarea {
+            width: 100%;
+            height: 80px;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid var(--primary-light);
+            font-size: 1rem;
+            resize: none;
+            outline: none;
+        }
+        .korean-result {
+            background-color: var(--primary-light);
+            padding: 16px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #4A3F35;
+            text-align: center;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .trans-link-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            font-size: 0.95rem;
+        }
+
+        /* 行程說明樣式預留 */
+        .day-tabs {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            margin-bottom: 16px;
+            padding-bottom: 5px;
+            scrollbar-width: none;
+        }
+        .day-tabs::-webkit-scrollbar { display: none; }
+        .day-tab-btn {
+            flex: 0 0 auto;
+            padding: 10px 18px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--primary-light);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            cursor: pointer;
+        }
+        .day-tab-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            font-weight: bold;
+        }
+        .day-content { display: none; }
+        .day-content.active { display: block; }
+    </style>
+</head>
+<body>
+
+<div class="phone-container">
+    <div class="app-header" id="header-title">📋 準備與航班</div>
+
+    <div class="content-area">
+
+        <!-- 頁面 1：準備與航班資訊 -->
+        <div id="page-1" class="page active">
+            <h2>去回航班資訊</h2>
+            
+            <div class="ticket-card">
+                <div class="ticket-header">
+                    <span>🛫 去程航班 (CI188)</span>
+                    <span>經濟艙 (N)</span>
+                </div>
+                <div class="ticket-body">
+                    <div>
+                        <div class="ticket-city">台北 (TPE)</div>
+                        <div class="ticket-time">07:40</div>
+                        <div class="ticket-sub">11/29 (日) | T1</div>
+                    </div>
+                    <div class="ticket-arrow">➔</div>
+                    <div>
+                        <div class="ticket-city">釜山 (PUS)</div>
+                        <div class="ticket-time">10:50</div>
+                        <div class="ticket-sub">11/29 (日) | T1</div>
+                    </div>
+                </div>
+                <div class="ticket-footer">
+                    <span>飛行時間：02小時10分</span>
+                    <span>行李：1件 23kg</span>
+                </div>
+            </div>
+
+            <div class="ticket-card">
+                <div class="ticket-header">
+                    <span>🛬 回程航班 (CI187)</span>
+                    <span>經濟艙 (N)</span>
+                </div>
+                <div class="ticket-body">
+                    <div>
+                        <div class="ticket-city">釜山 (PUS)</div>
+                        <div class="ticket-time">19:50</div>
+                        <div class="ticket-sub">12/04 (五) | T1</div>
+                    </div>
+                    <div class="ticket-arrow">➔</div>
+                    <div>
+                        <div class="ticket-city">台北 (TPE)</div>
+                        <div class="ticket-time">21:30</div>
+                        <div class="ticket-sub">12/04 (五) | T1</div>
+                    </div>
+                </div>
+                <div class="ticket-footer">
+                    <span>飛行時間：02小時40分</span>
+                    <span>行李：1件 23kg</span>
+                </div>
+            </div>
+
+            <h2>行前與注意事項</h2>
+            <div class="cream-card">
+                <ol style="padding-left: 20px; line-height: 1.8; font-size: 0.95rem;">
+                    <li><b>行李重量限制</b>：託運行李每人不可超過 23 公斤；隨身行李每人不可超過 7 公斤。</li>
+                    <li><b>行動電源安全規定</b>：
+                        <br>• 單顆容量不得超過 100Wh，且必須清晰標示。
+                        <br>• <b>絕對禁止放入托運行李</b>，必須隨身攜帶上機。
+                        <br>• 建議使用<b>絕緣膠帶（或電火布）</b>將充電孔貼封起來避免短路。
+                    </li>
+                    <li><b>海關違禁品與常擔心的物品</b>：
+                        <br>• ❌ <b>絕對違禁品</b>：肉製品（如肉乾、肉鬆、含肉調理包、豬肉製品）、新鮮水果。
+                        <br>• 🟢 <b>可安心帶回的伴手禮</b>：泡菜（因帶有大量發酵醬汁，不能手提上機，<b>必須妥善密封後放入托運行李</b>）、醃醬蟹、醃章魚。
+                    </li>
+                    <li><b>護照效期</b>：出國當天護照效期必須滿 6 個月以上。</li>
+                    <li><b>電壓與插座</b>：韓國使用 220V 圓形雙孔插座。</li>
+                    <li><b>韓國當地支付</b>：建議準備信用卡與部分韓元現金。</li>
+                </ol>
+            </div>
+
+            <h2>行李檢查清單</h2>
+            <div class="cream-card">
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <label style="font-size: 1rem;"><input type="checkbox" style="transform: scale(1.2); margin-right: 10px;"> 護照 (效期需滿 6 個月以上)</label>
+                    <label style="font-size: 1rem;"><input type="checkbox" style="transform: scale(1.2); margin-right: 10px;"> 機票與飯店預訂單</label>
+                    <label style="font-size: 1rem;"><input type="checkbox" style="transform: scale(1.2); margin-right: 10px;"> 網卡 / eSIM 設定</label>
+                    <label style="font-size: 1rem;"><input type="checkbox" style="transform: scale(1.2); margin-right: 10px;"> 韓元現金 / 信用卡</label>
+                    <label style="font-size: 1rem;"><input type="checkbox" style="transform: scale(1.2); margin-right: 10px;"> 保溫瓶 / 常備藥品</label>
+                    <label style="font-size: 1rem;"><input type="checkbox" style="transform: scale(1.2); margin-right: 10px;"> 韓國專用轉接頭 (圓形雙孔)</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- 頁面 2：交通導航 -->
+        <div id="page-2" class="page">
+            <h2>Naver Map 快速導航</h2>
+            <div class="cream-card">
+                <p style="margin-bottom: 14px; color: var(--text-sub); font-size: 0.9rem;">
+                    輸入中文或貼上地點網址，直接連至 Naver Map 導航：
+                </p>
+                <div class="nav-input-group">
+                    <label>📍 出發地（可填可不填）</label>
+                    <input type="text" id="start-input" class="nav-input" placeholder="例如：南浦洞飯店">
+                </div>
+                <div class="nav-input-group">
+                    <label>🎯 目的地（必填）</label>
+                    <input type="text" id="dest-input" class="nav-input" placeholder="例如：海雲台藍線公園 或 貼上網址">
+                </div>
+                <button class="search-btn" onclick="openNaverMap()">開啟 Naver 導航</button>
+            </div>
+            
+            <div class="cream-card">
+                <h3>📍 常用熱門地點快選</h3>
+                <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 10px;">
+                    <button onclick="quickNav('金海國際機場')" style="padding:10px; background:var(--bg-color); border:1px solid var(--primary-light); border-radius:8px; cursor:pointer; text-align:left;">✈️ 金海國際機場</button>
+                    <button onclick="quickNav('海雲台藍線公園')" style="padding:10px; background:var(--bg-color); border:1px solid var(--primary-light); border-radius:8px; cursor:pointer; text-align:left;">🚆 海雲台藍線公園</button>
+                    <button onclick="quickNav('甘川洞文化村')" style="padding:10px; background:var(--bg-color); border:1px solid var(--primary-light); border-radius:8px; cursor:pointer; text-align:left;">🎨 甘川洞文化村</button>
+                    <button onclick="quickNav('松島海上纜車')" style="padding:10px; background:var(--bg-color); border:1px solid var(--primary-light); border-radius:8px; cursor:pointer; text-align:left;">🚠 松島海上纜車</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 頁面 3：匯率資訊 -->
+        <div id="page-3" class="page">
+            <h2>韓元匯率速算</h2>
+            <div class="cream-card" style="text-align: center;">
+                <p style="color: var(--text-sub);">輸入 韓元 (KRW)</p>
+                <input type="number" id="krw-input" class="currency-input" placeholder="0" oninput="convertCurrency('krw')">
+                <p style="margin: 20px 0 5px 0; color: var(--text-sub);">預估相當於 台幣 (TWD)</p>
+                <input type="number" id="twd-input" class="currency-input" placeholder="0" oninput="convertCurrency('twd')">
+                <p style="font-size: 0.8rem; color: var(--text-sub); margin-top: 15px;">* 匯率以 1 TWD = 42 KRW 計算，僅供參考</p>
+            </div>
+        </div>
+
+        <!-- 頁面 4：行李檢查 -->
+        <div id="page-4" class="page">
+            <h2>行李清單總覽</h2>
+            <div class="cream-card">
+                <p style="color: var(--text-sub); margin-bottom: 12px; font-size: 0.9rem;">行李勾選清單：</p>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <label style="font-size: 1.05rem;"><input type="checkbox" style="transform: scale(1.2); margin-right: 10px;"> 護照 (效期需滿 6 個月以上)</label>
+                    <label style="font-size: 1.05rem;"><input type="checkbox" style="transform: scale(1.2); margin-right: 10px;"> 機票與飯店預訂單</label>
+                    <label style="font-size: 1.05rem;"><input type="checkbox" style="transform: scale(1.2); margin-right: 10px;"> 網卡 / eSIM 設定</label>
+                    <label style="font-size: 1.05rem;"><input type="checkbox" style="transform: scale(1.2); margin-right: 10px;"> 韓元現金 / 信用卡</label>
+                    <label style="font-size: 1.05rem;"><input type="checkbox" style="transform: scale(1.2); margin-right: 10px;"> 保溫瓶 / 常備藥品</label>
+                    <label style="font-size: 1.05rem;"><input type="checkbox" style="transform: scale(1.2); margin-right: 10px;"> 韓國專用轉接頭 (圓形雙孔)</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- 頁面 5：行程說明 -->
+        <div id="page-5" class="page">
+            <h2>6天精選行程</h2>
+            <div class="day-tabs">
+                <button class="day-tab-btn active" onclick="switchDay(1)">Day 1 (11/29)</button>
+                <button class="day-tab-btn" onclick="switchDay(2)">Day 2 (11/30)</button>
+                <button class="day-tab-btn" onclick="switchDay(3)">Day 3 (12/01)</button>
+                <button class="day-tab-btn" onclick="switchDay(4)">Day 4 (12/02)</button>
+                <button class="day-tab-btn" onclick="switchDay(5)">Day 5 (12/03)</button>
+                <button class="day-tab-btn" onclick="switchDay(6)">Day 6 (12/04)</button>
+            </div>
+
+            <div id="day-1" class="day-content active">
+                <div class="cream-card" style="text-align: center; padding: 30px;">
+                    <p style="color: var(--text-sub);">Day 1 行程詳細資訊準備中...</p>
+                    <p style="font-size: 0.85rem; color: var(--primary-color); margin-top: 8px;">隨時可以為您擴充與調整版面！</p>
+                </div>
+            </div>
+            <div id="day-2" class="day-content"><div class="cream-card" style="text-align: center; padding: 30px;"><p style="color: var(--text-sub);">Day 2 行程準備中...</p></div></div>
+            <div id="day-3" class="day-content"><div class="cream-card" style="text-align: center; padding: 30px;"><p style="color: var(--text-sub);">Day 3 行程準備中...</p></div></div>
+            <div id="day-4" class="day-content"><div class="cream-card" style="text-align: center; padding: 30px;"><p style="color: var(--text-sub);">Day 4 行程準備中...</p></div></div>
+            <div id="day-5" class="day-content"><div class="cream-card" style="text-align: center; padding: 30px;"><p style="color: var(--text-sub);">Day 5 行程準備中...</p></div></div>
+            <div id="day-6" class="day-content"><div class="cream-card" style="text-align: center; padding: 30px;"><p style="color: var(--text-sub);">Day 6 行程準備中...</p></div></div>
+        </div>
+
+        <!-- 頁面 6：中韓雙向翻譯 (升級為智慧內建 + 一鍵連Google翻譯) -->
+        <div id="page-6" class="page">
+            <h2>中韓雙向翻譯</h2>
+            <div class="cream-card">
+                <p style="color: var(--text-sub); margin-bottom: 8px; font-size: 0.9rem;">自由輸入你想翻譯的中文：</p>
+                <textarea id="user-translate-input" class="translate-textarea" placeholder="在此輸入中文..." oninput="handleCustomTranslate()"></textarea>
+                <div id="korean-output" class="korean-result">輸入中文後，將顯示對應韓文或查詢按鈕</div>
+                <a id="google-trans-link" href="https://translate.google.com/?sl=zh-TW&tl=ko&text=" target="_blank" class="trans-link-btn" style="display: none;">🌐 點擊前往 Google 翻譯此句</a>
+            </div>
+
+            <div class="cream-card">
+                <p style="font-weight: bold; margin-bottom: 10px;">💡 常用一句話點擊放大：</p>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <button onclick="setTranslate('請問廁所在哪裡？', '화장실이 어디에 있어요?')" style="padding:10px; background:var(--bg-color); border:1px solid var(--primary-light); border-radius:8px; cursor:pointer; text-align:left;">🚻 請問廁所在哪裡？</button>
+                    <button onclick="setTranslate('請幫我結帳，謝謝。', '계산해주세요, 감사합니다.')" style="padding:10px; background:var(--bg-color); border:1px solid var(--primary-light); border-radius:8px; cursor:pointer; text-align:left;">💳 請幫我結帳，謝謝。</button>
+                    <button onclick="setTranslate('這個辣嗎？請不要加辣。', '이거 매워요? 맵지 않게 해주세요.')" style="padding:10px; background:var(--bg-color); border:1px solid var(--primary-light); border-radius:8px; cursor:pointer; text-align:left;">🌶️ 請不要加辣</button>
+                    <button onclick="setTranslate('請問這裡多少錢？', '여기 얼마예요?')" style="padding:10px; background:var(--bg-color); border:1px solid var(--primary-light); border-radius:8px; cursor:pointer; text-align:left;">💰 請問這裡多少錢？</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 底部導覽列 -->
+    <div class="bottom-nav">
+        <button class="nav-item active" onclick="switchPage(1, '📋 準備與航班')"><span class="icon">✈️</span>準備</button>
+        <button class="nav-item" onclick="switchPage(2, '🗺️ 交通導航')"><span class="icon">🗺</span>導航</button>
+        <button class="nav-item" onclick="switchPage(3, '💰 匯率計算')"><span class="icon">💰</span>匯率</button>
+        <button class="nav-item" onclick="switchPage(4, '🧳 行李清單')"><span class="icon">🧳</span>行李</button>
+        <button class="nav-item" onclick="switchPage(5, '📅 6天行程')"><span class="icon">📅</span>行程</button>
+        <button class="nav-item" onclick="switchPage(6, '🗣️ 韓文翻譯')"><span class="icon">🗣️</span>翻譯</button>
+    </div>
+</div>
+
+<script>
+    function switchPage(pageNum, title) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById('page-' + pageNum).classList.add('active');
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+        document.getElementById('header-title').innerText = title;
+    }
+
+    function switchDay(dayNum) {
+        document.querySelectorAll('.day-tab-btn').forEach(b => b.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+        document.querySelectorAll('.day-content').forEach(c => c.classList.remove('active'));
+        document.getElementById('day-' + dayNum).classList.add('active');
+    }
+
+    function openNaverMap() {
+        const dest = document.getElementById('dest-input').value.trim();
+        if(!dest) { alert('請至少輸入目的地或貼上網址！'); return; }
+        if(dest.startsWith('http://') || dest.startsWith('https://')) {
+            window.open(dest, '_blank');
+        } else {
+            window.open(`https://map.naver.com/v5/search/${encodeURIComponent(dest)}`, '_blank');
+        }
+    }
+    function quickNav(place) {
+        window.open(`https://map.naver.com/v5/search/${encodeURIComponent(place)}`, '_blank');
+    }
+
+    function convertCurrency(type) {
+        const krwInput = document.getElementById('krw-input');
+        const twdInput = document.getElementById('twd-input');
+        if(type === 'krw') {
+            const val = parseFloat(krwInput.value) || 0;
+            twdInput.value = Math.round(val / 42);
+        } else {
+            const val = parseFloat(twdInput.value) || 0;
+            krwInput.value = Math.round(val * 42);
+        }
+    }
+
+    function setTranslate(cn, kr) {
+        document.getElementById('user-translate-input').value = cn;
+        const output = document.getElementById('korean-output');
+        const linkBtn = document.getElementById('google-trans-link');
+        output.innerText = kr;
+        linkBtn.style.display = 'none';
+    }
+
+    function handleCustomTranslate() {
+        const text = document.getElementById('user-translate-input').value.trim();
+        const output = document.getElementById('korean-output');
+        const linkBtn = document.getElementById('google-trans-link');
+        
+        if(!text) {
+            output.innerText = '輸入中文後，將顯示對應韓文或查詢按鈕';
+            linkBtn.style.display = 'none';
+            return;
+        }
+
+        // 常見短句對照
+        const dict = {
+            '你好': '안녕하세요',
+            '謝謝': '감사합니다',
+            '多少錢': '얼마예요?',
+            '廁所': '화장실',
+            '水': '물',
+            '很好吃': '맛있어요',
+            '請問廁所在哪裡？': '화장실이 어디에 있어요?',
+            '請幫我結帳': '계산해주세요',
+            '哈哈哈': 'ㅋㅋ (呵呵)'
+        };
+
+        if(dict[text]) {
+            output.innerText = dict[text];
+            linkBtn.style.display = 'none';
+        } else {
+            output.innerText = `自訂文字：「${text}」`;
+            linkBtn.href = `https://translate.google.com/?sl=zh-TW&tl=ko&text=${encodeURIComponent(text)}`;
+            linkBtn.style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>
