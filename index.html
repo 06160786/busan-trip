@@ -52,7 +52,7 @@
             }
         }
 
-        /* 頂部標題與分頁導覽列整合區塊 */
+        /* 頂部標題與上方分頁列 */
         .header-section {
             background-color: var(--bg-color);
             position: sticky;
@@ -70,23 +70,23 @@
             color: var(--text-main);
         }
 
-        /* 上方橫向滑動分頁列 */
         .top-nav {
             display: flex;
             overflow-x: auto;
             gap: 8px;
             padding: 8px 16px 12px 16px;
             scrollbar-width: none;
+            justify-content: center;
         }
         .top-nav::-webkit-scrollbar { display: none; }
 
         .nav-tab {
             flex: 0 0 auto;
-            padding: 8px 14px;
+            padding: 8px 16px;
             background-color: var(--card-bg);
             border: 1px solid rgba(212, 163, 115, 0.3);
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--text-sub);
             cursor: pointer;
             transition: all 0.2s ease;
@@ -104,12 +104,11 @@
             box-shadow: 0 4px 10px rgba(212, 163, 115, 0.3);
         }
 
-        /* 內容區域 */
         .content-area {
             flex: 1;
             overflow-y: auto;
             padding: 20px;
-            padding-bottom: 40px; /* 底部留白 */
+            padding-bottom: 40px;
         }
 
         .page {
@@ -189,40 +188,6 @@
             color: var(--text-sub);
         }
 
-        /* 導航頁面輸入框 */
-        .nav-input-group {
-            margin-bottom: 12px;
-        }
-        .nav-input-group label {
-            display: block;
-            font-size: 0.9rem;
-            margin-bottom: 4px;
-            color: var(--text-sub);
-            font-weight: bold;
-        }
-        .nav-input {
-            width: 100%;
-            padding: 12px;
-            border-radius: 10px;
-            border: 1px solid var(--primary-light);
-            outline: none;
-            font-size: 1rem;
-            background-color: var(--card-bg);
-        }
-        .search-btn {
-            width: 100%;
-            padding: 12px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            cursor: pointer;
-            font-weight: bold;
-            margin-top: 6px;
-        }
-
-        /* 匯率輸入框 */
         .currency-input {
             width: 100%;
             padding: 12px;
@@ -234,10 +199,10 @@
             text-align: center;
         }
 
-        /* 翻譯輸入框 */
+        /* 翻譯頁面樣式 */
         .translate-textarea {
             width: 100%;
-            height: 80px;
+            height: 70px;
             padding: 10px;
             border-radius: 10px;
             border: 1px solid var(--primary-light);
@@ -249,15 +214,16 @@
             background-color: var(--primary-light);
             padding: 16px;
             border-radius: 10px;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: bold;
             color: #4A3F35;
             text-align: center;
-            min-height: 60px;
+            min-height: 75px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-top: 10px;
+            line-height: 1.4;
         }
         .trans-link-btn {
             display: block;
@@ -272,8 +238,37 @@
             margin-top: 10px;
             font-size: 0.95rem;
         }
+        .trans-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .trans-btn {
+            padding: 10px;
+            background-color: var(--bg-color);
+            border: 1px solid var(--primary-light);
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 0.88rem;
+            color: var(--text-main);
+            transition: 0.2s;
+            line-height: 1.3;
+        }
+        .trans-btn:active {
+            background-color: var(--primary-light);
+        }
+        .section-title {
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+            border-left: 4px solid var(--primary-color);
+            padding-left: 8px;
+        }
 
-        /* 行程說明樣式預留 */
+        /* 行程樣式 */
         .day-tabs {
             display: flex;
             overflow-x: auto;
@@ -308,20 +303,18 @@
 <div class="phone-container">
     <!-- 頂部標題與上方分頁列 -->
     <div class="header-section">
-        <div class="app-header" id="header-title">📋 準備與航班</div>
+        <div class="app-header" id="header-title">💡 旅遊資訊</div>
         <div class="top-nav">
-            <button class="nav-tab active" onclick="switchPage(1, '📋 準備與航班')">✈️ 準備</button>
-            <button class="nav-tab" onclick="switchPage(2, '🗺️ 交通導航')">🗺️ 導航</button>
-            <button class="nav-tab" onclick="switchPage(3, '💰 匯率計算')">💰 匯率</button>
-            <button class="nav-tab" onclick="switchPage(4, '🧳 行李清單')">🧳 行李</button>
-            <button class="nav-tab" onclick="switchPage(5, '📅 6天行程')">📅 行程</button>
-            <button class="nav-tab" onclick="switchPage(6, '🗣️ 韓文翻譯')">🗣️ 翻譯</button>
+            <button class="nav-tab active" onclick="switchPage(1, '💡 旅遊資訊')">💡 資訊</button>
+            <button class="nav-tab" onclick="switchPage(2, '💰 匯率計算')">💰 匯率</button>
+            <button class="nav-tab" onclick="switchPage(3, '📅 6天行程')">📅 行程</button>
+            <button class="nav-tab" onclick="switchPage(4, '🗣️ 韓文翻譯')">🗣️ 翻譯</button>
         </div>
     </div>
 
     <div class="content-area">
 
-        <!-- 頁面 1：準備與航班資訊 -->
+        <!-- 頁面 1：資訊 -->
         <div id="page-1" class="page active">
             <h2>去回航班資訊</h2>
             
@@ -405,37 +398,8 @@
             </div>
         </div>
 
-        <!-- 頁面 2：交通導航 -->
+        <!-- 頁面 2：匯率資訊 -->
         <div id="page-2" class="page">
-            <h2>Naver Map 快速導航</h2>
-            <div class="cream-card">
-                <p style="margin-bottom: 14px; color: var(--text-sub); font-size: 0.9rem;">
-                    輸入中文或貼上地點網址，直接連至 Naver Map 導航：
-                </p>
-                <div class="nav-input-group">
-                    <label>📍 出發地（可填可不填）</label>
-                    <input type="text" id="start-input" class="nav-input" placeholder="例如：南浦洞飯店">
-                </div>
-                <div class="nav-input-group">
-                    <label>🎯 目的地（必填）</label>
-                    <input type="text" id="dest-input" class="nav-input" placeholder="例如：海雲台藍線公園 或 貼上網址">
-                </div>
-                <button class="search-btn" onclick="openNaverMap()">開啟 Naver 導航</button>
-            </div>
-            
-            <div class="cream-card">
-                <h3>📍 常用熱門地點快選</h3>
-                <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 10px;">
-                    <button onclick="quickNav('金海國際機場')" style="padding:10px; background:var(--bg-color); border:1px solid var(--primary-light); border-radius:8px; cursor:pointer; text-align:left;">✈️ 金海國際機場</button>
-                    <button onclick="quickNav('海雲台藍線公園')" style="padding:10px; background:var(--bg-color); border:1px solid var(--primary-light); border-radius:8px; cursor:pointer; text-align:left;">🚆 海雲台藍線公園</button>
-                    <button onclick="quickNav('甘川洞文化村')" style="padding:10px; background:var(--bg-color); border:1px solid var(--primary-light); border-radius:8px; cursor:pointer; text-align:left;">🎨 甘川洞文化村</button>
-                    <button onclick="quickNav('松島海上纜車')" style="padding:10px; background:var(--bg-color); border:1px solid var(--primary-light); border-radius:8px; cursor:pointer; text-align:left;">🚠 松島海上纜車</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- 頁面 3：匯率資訊 -->
-        <div id="page-3" class="page">
             <h2>韓元匯率速算</h2>
             <div class="cream-card" style="text-align: center;">
                 <p style="color: var(--text-sub);">輸入 韓元 (KRW)</p>
@@ -446,24 +410,8 @@
             </div>
         </div>
 
-        <!-- 頁面 4：行李檢查 -->
-        <div id="page-4" class="page">
-            <h2>行李清單總覽</h2>
-            <div class="cream-card">
-                <p style="color: var(--text-sub); margin-bottom: 12px; font-size: 0.9rem;">行李勾選清單：</p>
-                <div style="display: flex; flex-direction: column; gap: 12px;">
-                    <label style="font-size: 1.05rem;"><input type="checkbox" style="transform: scale(1.2); margin-right: 10px;"> 護照 (效期需滿 6 個月以上)</label>
-                    <label style="font-size: 1.05rem;"><input type="checkbox" style="transform: scale(1.2); margin-right: 10px;"> 機票與飯店預訂單</label>
-                    <label style="font-size: 1.05rem;"><input type="checkbox" style="transform: scale(1.2); margin-right: 10px;"> 網卡 / eSIM 設定</label>
-                    <label style="font-size: 1.05rem;"><input type="checkbox" style="transform: scale(1.2); margin-right: 10px;"> 韓元現金 / 信用卡</label>
-                    <label style="font-size: 1.05rem;"><input type="checkbox" style="transform: scale(1.2); margin-right: 10px;"> 保溫瓶 / 常備藥品</label>
-                    <label style="font-size: 1.05rem;"><input type="checkbox" style="transform: scale(1.2); margin-right: 10px;"> 韓國專用轉接頭 (圓形雙孔)</label>
-                </div>
-            </div>
-        </div>
-
-        <!-- 頁面 5：行程說明 -->
-        <div id="page-5" class="page">
+        <!-- 頁面 3：行程說明 -->
+        <div id="page-3" class="page">
             <h2>6天精選行程</h2>
             <div class="day-tabs">
                 <button class="day-tab-btn active" onclick="switchDay(1)">Day 1 (11/29)</button>
@@ -477,7 +425,7 @@
             <div id="day-1" class="day-content active">
                 <div class="cream-card" style="text-align: center; padding: 30px;">
                     <p style="color: var(--text-sub);">Day 1 行程詳細資訊準備中...</p>
-                    <p style="font-size: 0.85rem; color: var(--primary-color); margin-top: 8px;">隨時可以為您擴充與調整版面！</p>
+                    <p style="font-size: 0.85rem; color: var(--primary-color); margin-top: 8px;">未來您可以把 Naver 導航連結直接加在這裡！</p>
                 </div>
             </div>
             <div id="day-2" class="day-content"><div class="cream-card" style="text-align: center; padding: 30px;"><p style="color: var(--text-sub);">Day 2 行程準備中...</p></div></div>
@@ -487,23 +435,69 @@
             <div id="day-6" class="day-content"><div class="cream-card" style="text-align: center; padding: 30px;"><p style="color: var(--text-sub);">Day 6 行程準備中...</p></div></div>
         </div>
 
-        <!-- 頁面 6：中韓雙向翻譯 -->
-        <div id="page-6" class="page">
-            <h2>中韓雙向翻譯</h2>
+        <!-- 頁面 4：中韓雙向翻譯 (全中文完整句型 + 標準禮貌敬語) -->
+        <div id="page-4" class="page">
+            <h2>中韓雙向翻譯 (有禮貌敬語版)</h2>
             <div class="cream-card">
                 <p style="color: var(--text-sub); margin-bottom: 8px; font-size: 0.9rem;">自由輸入你想翻譯的中文：</p>
                 <textarea id="user-translate-input" class="translate-textarea" placeholder="在此輸入中文..." oninput="handleCustomTranslate()"></textarea>
-                <div id="korean-output" class="korean-result">輸入中文後，將顯示對應韓文或查詢按鈕</div>
+                <div id="korean-output" class="korean-result">點選下方分類按鈕，或輸入文字</div>
                 <a id="google-trans-link" href="https://translate.google.com/?sl=zh-TW&tl=ko&text=" target="_blank" class="trans-link-btn" style="display: none;">🌐 點擊前往 Google 翻譯此句</a>
             </div>
 
+            <!-- 分類一：用餐點餐 -->
             <div class="cream-card">
-                <p style="font-weight: bold; margin-bottom: 10px;">💡 常用一句話點擊放大：</p>
+                <div class="section-title">🍽️ 用餐點餐與人數</div>
+                <div class="trans-grid" style="margin-bottom: 8px;">
+                    <button class="trans-btn" onclick="setTranslate('請問現在有位子嗎？', '자리 있어요? (賈莉 伊搜唷？)')">🙋 請問現在有位子嗎？</button>
+                    <button class="trans-btn" onclick="setTranslate('請問這裡有中文菜單嗎？', '중국어 메뉴판 있어요? (中文選單 伊搜唷？)')">📖 請問有中文菜單嗎？</button>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-sub); margin: 6px 0 4px 0;">餐廳報人數：</p>
+                <div class="trans-grid">
+                    <button class="trans-btn" onclick="setTranslate('我們總共是 1 位，謝謝。', '1명이요 (一脈唷)')">👤 我們是 1 位</button>
+                    <button class="trans-btn" onclick="setTranslate('我們總共是 2 位，謝謝。', '2명이요 (依脈唷)')">👥 我們是 2 位</button>
+                    <button class="trans-btn" onclick="setTranslate('我們總共是 3 位，謝謝。', '3명이요 (撒脈唷)')">👥 我們是 3 位</button>
+                    <button class="trans-btn" onclick="setTranslate('我們總共是 4 位，謝謝。', '4명이요 (內脈唷)')">👥 我們是 4 位</button>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
+                    <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請給我一杯水，謝謝。', '물 좀 주세요, 감사합니다. (莫 鍾 主些喲)')">💧 請給我一杯水，謝謝</button>
+                    <button class="trans-btn" style="width:100%" onclick="setTranslate('請問這個會辣嗎？請不要加辣，謝謝。', '이거 매워요? 맵지 않게 해주세요. (辣嗎？不辣主些喲)')">🌶️ 這個會辣嗎？請不要加辣</button>
+                    <button class="trans-btn" style="width:100%" onclick="setTranslate('真的非常好吃，謝謝你們！', '잘 먹었습니다! (查 目 勾 思 補 尼 大)')">😋 真的非常好吃，謝謝招待</button>
+                    <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請幫我結帳，謝謝。', '계산해주세요. (計算主些喲)')">💳 不好意思，請幫我結帳</button>
+                </div>
+            </div>
+
+            <!-- 分類二：購物與免稅 -->
+            <div class="cream-card">
+                <div class="section-title">🛍️ 購物與免稅 (Tax Free)</div>
                 <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <button onclick="setTranslate('請問廁所在哪裡？', '화장실이 어디에 있어요?')" style="padding:10px; background:var(--bg-color); border:1px solid var(--primary-light); border-radius:8px; cursor:pointer; text-align:left;">🚻 請問廁所在哪裡？</button>
-                    <button onclick="setTranslate('請幫我結帳，謝謝。', '계산해주세요, 감사합니다.')" style="padding:10px; background:var(--bg-color); border:1px solid var(--primary-light); border-radius:8px; cursor:pointer; text-align:left;">💳 請幫我結帳，謝謝。</button>
-                    <button onclick="setTranslate('這個辣嗎？請不要加辣。', '이거 매워요? 맵지 않게 해주세요.')" style="padding:10px; background:var(--bg-color); border:1px solid var(--primary-light); border-radius:8px; cursor:pointer; text-align:left;">🌶️ 請不要加辣</button>
-                    <button onclick="setTranslate('請問這裡多少錢？', '여기 얼마예요?')" style="padding:10px; background:var(--bg-color); border:1px solid var(--primary-light); border-radius:8px; cursor:pointer; text-align:left;">💰 請問這裡多少錢？</button>
+                    <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請問這裡可以辦理退稅嗎？', '여기 택스 프리 되나요? (Tax Free 兌拿唷？)')">🏷️ 請問這裡可以退稅嗎？</button>
+                    <button class="trans-btn" style="width:100%" onclick="setTranslate('請問消費滿多少金額才可以退稅呢？', '얼마 이상 사야 택스 프리가 되나요? (多少錢以上可Tax Free？)')">💰 請問消費滿多少可以退稅？</button>
+                    <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請幫我準備退稅單，謝謝。', '택스 프리 서류 챙겨주세요. (請準備退稅文件)')">🧾 請幫我開立退稅單，謝謝</button>
+                    <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請問這個大約多少錢呢？', '이거 얼마예요? (這 歐媽耶唷？)')">💵 請問這個大約多少錢？</button>
+                    <button class="trans-btn" style="width:100%" onclick="setTranslate('不用裝袋沒關係，謝謝您。', '봉투는 안 주셔도 됩니다. (不用給袋子)')">🛍️ 不用裝袋沒關係，謝謝</button>
+                </div>
+            </div>
+
+            <!-- 分類三：問路與交通 -->
+            <div class="cream-card">
+                <div class="section-title">🗺️ 問路與交通</div>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請問洗手間/廁所在哪裡呢？', '화장실이 어디에 있어요? (華裝室 伊地 伊搜唷？)')">🚻 請問洗手間/廁所在哪裡？</button>
+                    <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請載我到這個地址，謝謝。', '이 주소로 가주세요. (請去這個地址)')">🚕 請載我到這個地址，謝謝</button>
+                    <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請問這裡可以搭地鐵嗎？', '여기서 지하철을 탈 수 있나요? (這裡能搭地鐵嗎？)')">🚇 請問這裡可以搭地鐵嗎？</button>
+                    <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請在這裡讓我下車，謝謝。', '여기서 내려주세요. (請在這裡放我下來)')">🛑 請在這裡讓我下車，謝謝</button>
+                </div>
+            </div>
+
+            <!-- 分類四：基本禮貌與應急 -->
+            <div class="cream-card">
+                <div class="section-title">✨ 基本禮貌與應急</div>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <button class="trans-btn" style="width:100%" onclick="setTranslate('您好，謝謝您！', '안녕하세요 / 감사합니다 (安妞哈希唷 / 監沙哈密達)')">👋 您好 / 謝謝您</button>
+                    <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請問一下......', '실례합니다 / 저기요 (失禮哈密達 / 揪gi喲)')">🗣️ 不好意思，請問一下</button>
+                    <button class="trans-btn" style="width:100%" onclick="setTranslate('真的非常對不起、不好意思。', '죄송합니다 (崔宋哈密達)')">🙇 真不好意思 / 很抱歉</button>
+                    <button class="trans-btn" style="width:100%" onclick="setTranslate('拜託請幫幫我！', '살려주세요 / 도와주세요! (請救命 / 請幫幫我！)')">🚨 拜託請幫幫我！(緊急)</button>
                 </div>
             </div>
         </div>
@@ -525,19 +519,6 @@
         event.currentTarget.classList.add('active');
         document.querySelectorAll('.day-content').forEach(c => c.classList.remove('active'));
         document.getElementById('day-' + dayNum).classList.add('active');
-    }
-
-    function openNaverMap() {
-        const dest = document.getElementById('dest-input').value.trim();
-        if(!dest) { alert('請至少輸入目的地或貼上網址！'); return; }
-        if(dest.startsWith('http://') || dest.startsWith('https://')) {
-            window.open(dest, '_blank');
-        } else {
-            window.open(`https://map.naver.com/v5/search/${encodeURIComponent(dest)}`, '_blank');
-        }
-    }
-    function quickNav(place) {
-        window.open(`https://map.naver.com/v5/search/${encodeURIComponent(place)}`, '_blank');
     }
 
     function convertCurrency(type) {
@@ -566,21 +547,16 @@
         const linkBtn = document.getElementById('google-trans-link');
         
         if(!text) {
-            output.innerText = '輸入中文後，將顯示對應韓文或查詢按鈕';
+            output.innerText = '點選下方分類按鈕，或輸入文字';
             linkBtn.style.display = 'none';
             return;
         }
 
+        // 僅保留基本日常短句的字典，其餘交由 Google 翻譯連結
         const dict = {
             '你好': '안녕하세요',
             '謝謝': '감사합니다',
             '多少錢': '얼마예요?',
-            '廁所': '화장실',
-            '水': '물',
-            '很好吃': '맛있어요',
-            '請問廁所在哪裡？': '화장실이 어디에 있어요?',
-            '請幫我結帳': '계산해주세요',
-            '哈哈哈': 'ㅋㅋ (呵呵)'
         };
 
         if(dict[text]) {
