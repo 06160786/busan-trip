@@ -540,56 +540,39 @@
             margin-left: auto;
         }
 
-        .naver-link {
-            display: inline-block;
-            font-size: 0.72rem;
-            color: #2db400;
-            background: #eef9ee;
-            padding: 2px 6px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: bold;
-            white-space: nowrap;
-        }
-        .naver-link:hover {
-            background: #2db400;
-            color: white;
-        }
-
         .day-content { display: none; }
         .day-content.active { display: block; }
 
-        /* 彈出視窗 Modal 樣式 */
+        /* 純文字彈出視窗 Modal 樣式 */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.4);
             display: none;
             justify-content: center;
             align-items: center;
             z-index: 1000;
             padding: 20px;
-            backdrop-filter: blur(4px);
+            backdrop-filter: blur(3px);
         }
 
         .modal-card {
             background: #FFFFFF;
             border-radius: 20px;
-            max-width: 380px;
+            max-width: 360px;
             width: 100%;
-            max-height: 85vh;
-            overflow-y: auto;
-            padding: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 22px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             position: relative;
-            animation: modalFadeIn 0.25s ease-out;
+            animation: modalFadeIn 0.2s ease-out;
+            border: 1px solid var(--primary-light);
         }
 
         @keyframes modalFadeIn {
-            from { opacity: 0; transform: scale(0.92); }
+            from { opacity: 0; transform: scale(0.95); }
             to { opacity: 1; transform: scale(1); }
         }
 
@@ -614,34 +597,39 @@
             font-size: 1.2rem;
             font-weight: bold;
             color: #4A3F35;
-            margin-bottom: 6px;
-            padding-right: 30px;
+            margin-bottom: 12px;
+            padding-right: 25px;
+            line-height: 1.35;
         }
 
-        .modal-hours {
-            font-size: 0.88rem;
-            color: var(--accent-pink);
-            background: #FDF0ED;
-            padding: 6px 10px;
-            border-radius: 8px;
-            display: inline-block;
-            margin-bottom: 14px;
-            font-weight: bold;
-        }
-
-        .modal-img-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 16px;
-        }
-
-        .modal-img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
+        .modal-info-box {
+            background-color: var(--bg-color);
             border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 12px 14px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(212, 163, 115, 0.2);
+        }
+
+        .modal-hours-title {
+            font-size: 0.82rem;
+            color: var(--text-sub);
+            margin-bottom: 4px;
+        }
+
+        .modal-hours-val {
+            font-size: 0.95rem;
+            color: var(--accent-pink);
+            font-weight: bold;
+            line-height: 1.4;
+        }
+
+        .modal-note {
+            font-size: 0.85rem;
+            color: var(--text-main);
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed rgba(212, 163, 115, 0.3);
+            line-height: 1.4;
         }
 
         .modal-nav-btn {
@@ -655,7 +643,11 @@
             text-decoration: none;
             font-weight: bold;
             font-size: 0.95rem;
-            box-shadow: 0 4px 10px rgba(45, 180, 0, 0.2);
+            box-shadow: 0 4px 10px rgba(45, 180, 0, 0.15);
+            transition: background-color 0.2s;
+        }
+        .modal-nav-btn:hover {
+            background-color: #269900;
         }
     </style>
 </head>
@@ -856,7 +848,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('haeundae-beach')">
                                 <div class="v-card-title">
                                     <span>抵達海雲台海水浴場入口</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -866,7 +858,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('marysol-hotel')">
                                 <div class="v-card-title">
                                     <span>check in Marysol by Haeundae beach</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -876,7 +868,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('ant-house')">
                                 <div class="v-card-title">
                                     <span>螞蟻家辣炒章魚</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                                 <div class="v-card-sub">(等待入住期間享用)</div>
                             </div>
@@ -893,7 +885,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('gwanganri-beach')">
                                 <div class="v-card-title">
                                     <span>廣安里海灘、商店走走逛逛</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -903,7 +895,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('yacht-holic')">
                                 <div class="v-card-title">
                                     <span>Yacht Holic遊艇</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -922,7 +914,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('huinnyeoul')">
                                 <div class="v-card-title">
                                     <span>白淺灘文化村</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -938,7 +930,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('bbq-guy')">
                                 <div class="v-card-title">
                                     <span>烤肉的男子</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -948,7 +940,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('nampo-shopping')">
                                 <div class="v-card-title">
                                     <span>南浦洞逛街</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -958,7 +950,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('biff-square')">
                                 <div class="v-card-title">
                                     <span>BIFF廣場美饌</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -968,7 +960,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('gukje-market')">
                                 <div class="v-card-title">
                                     <span>國際市場買棉被</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -978,7 +970,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('olive-young-nampo')">
                                 <div class="v-card-title">
                                     <span>4層樓Olive young</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -988,7 +980,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('seed-pancake')">
                                 <div class="v-card-title">
                                     <span>必吃黑糖餅</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1004,7 +996,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('haeundae-market')">
                                 <div class="v-card-title">
                                     <span>海雲台夜市</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1023,7 +1015,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('abalone-porridge')">
                                 <div class="v-card-title">
                                     <span>大海鮑魚粥</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1033,7 +1025,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('capsule-train')">
                                 <div class="v-card-title">
                                     <span>膠囊列車</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1043,7 +1035,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('cheongsapo')">
                                 <div class="v-card-title">
                                     <span>釜山小鎌倉(青沙浦)</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1053,7 +1045,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('beach-train')">
                                 <div class="v-card-title">
                                     <span>海岸列車</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1069,7 +1061,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('31cm-noodle')">
                                 <div class="v-card-title">
                                     <span>海雲臺31公分海鮮刀切麵 松亭本店</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1079,7 +1071,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('yonggung-temple')">
                                 <div class="v-card-title">
                                     <span>海東龍宮寺</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1089,7 +1081,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('skyline-luge')">
                                 <div class="v-card-title">
                                     <span>Skyline 斜坡滑車</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1099,7 +1091,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('lotte-world')">
                                 <div class="v-card-title">
                                     <span>樂天世界樂園</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1109,7 +1101,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('lotte-outlet')">
                                 <div class="v-card-title">
                                     <span>樂天 Outlet</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1119,7 +1111,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('soy-crab')">
                                 <div class="v-card-title">
                                     <span>醬蟹 (也有鍋類)</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1129,7 +1121,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('club-oasis')">
                                 <div class="v-card-title">
                                     <span>Club Oasis 汗蒸幕</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1148,7 +1140,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('gamcheon-village')">
                                 <div class="v-card-title">
                                     <span>先拍 小王子 (甘川洞文化村)</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1158,7 +1150,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('hanbok-rental')">
                                 <div class="v-card-title">
                                     <span>Ibgogage 租韓服</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1168,7 +1160,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('flip-book')">
                                 <div class="v-card-title">
                                     <span>手翻書製作</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1194,7 +1186,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('songdo-lunch')">
                                 <div class="v-card-title">
                                     <span>松島美味午餐</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1204,7 +1196,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('songdo-cable-car')">
                                 <div class="v-card-title">
                                     <span>松島海上纜車 (來回+龍宮空中步道)</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1214,7 +1206,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('arte-museum')">
                                 <div class="v-card-title">
                                     <span>ARTE MUSEUM Busan</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1230,7 +1222,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('songjeong-pork-soup')">
                                 <div class="v-card-title">
                                     <span>松亭三代豬肉湯飯</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1240,7 +1232,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('animate-busan')">
                                 <div class="v-card-title">
                                     <span>安麗美特 애니메이트 부산점</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1250,7 +1242,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('jeonpo-cafe')">
                                 <div class="v-card-title">
                                     <span>田浦咖啡街 & 樂天百貨</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1268,7 +1260,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('egg-drop')">
                                 <div class="v-card-title">
                                     <span>Egg Drop 吐司</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1278,7 +1270,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('spa-land')">
                                 <div class="v-card-title">
                                     <span>Spa Land 汗蒸幕</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1288,7 +1280,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('korean-yakiniku')">
                                 <div class="v-card-title">
                                     <span>韓式燒肉</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1298,7 +1290,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('centum-city')">
                                 <div class="v-card-title">
                                     <span>新世界百貨 Centum City</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1308,7 +1300,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('christmas-village')">
                                 <div class="v-card-title">
                                     <span>聖誕村拍燈飾</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1332,7 +1324,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('grandma-soup')">
                                 <div class="v-card-title">
                                     <span>해운대원조할매국밥 (湯飯)</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1342,7 +1334,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('salt-bread')">
                                 <div class="v-card-title">
                                     <span>自然島鹽麵包</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1352,7 +1344,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('tiger-mochi')">
                                 <div class="v-card-title">
                                     <span>老虎冰淇淋大福</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1362,7 +1354,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('ovone-cafe')">
                                 <div class="v-card-title">
                                     <span>오브원 ovone</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1372,7 +1364,7 @@
                             <div class="v-timeline-card clickable" onclick="openModal('bada-sand')">
                                 <div class="v-card-title">
                                     <span>Busan Bada Sand 夾心餅</span>
-                                    <span class="click-hint">📷 照片</span>
+                                    <span class="click-hint">📌 資訊</span>
                                 </div>
                             </div>
                         </div>
@@ -1472,324 +1464,281 @@
     </div>
 </div>
 
-<!-- 景點／美食彈出視窗 Modal -->
+<!-- 景點／美食純文字彈出視窗 Modal -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
     <div class="modal-card" onclick="event.stopPropagation()">
         <button class="modal-close-btn" onclick="closeModalDirect()">✕</button>
         <div class="modal-title" id="m-title">景點名稱</div>
-        <div class="modal-hours" id="m-hours">⏰ 營業時間：加載中</div>
-        <div class="modal-img-container">
-            <img id="m-img1" class="modal-img" src="" alt="真實代表圖1">
-            <img id="m-img2" class="modal-img" src="" alt="真實代表圖2">
+        <div class="modal-info-box">
+            <div class="modal-hours-title">⏰ 營業時間與開放時間</div>
+            <div class="modal-hours-val" id="m-hours">載入中...</div>
+            <div class="modal-note" id="m-note">特色說明...</div>
         </div>
-        <a id="m-naver-btn" href="#" target="_blank" class="modal-nav-btn">🗺️ 開啟 Naver 地圖看最新照片與導航</a>
+        <a id="m-naver-btn" href="#" target="_blank" class="modal-nav-btn">🗺️ 開啟 Naver 地圖看導航與照片</a>
     </div>
 </div>
 
 <script>
     let currentDay = 1;
 
-    // 景點與美食資料庫 (改用精準正宗的廣安里夜景、海雲台沙灘、正宗韓式辣炒章魚鍋與烘焙圖)
+    // 景點與美食資料庫 (無圖片、提供精準營業時間與實用備註)
     const placeData = {
         'salt-bread': {
             title: '自然島鹽麵包 (자연도소금빵)',
-            hours: '⏰ 08:50 – 22:00 (每日營業)',
-            img1: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80',
+            hours: '08:50 – 22:00 (每日營業)',
+            note: '💡 每日分批出爐，建議現場購買後趁熱享用；熱門時段需排隊。',
             naver: 'https://naver.me/xrSQSF2f'
         },
         'tiger-mochi': {
             title: '老虎冰淇淋大福 (호랑이떡)',
-            hours: '⏰ 11:00 – 22:00 (售完為止)',
-            img1: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1579372786545-d24232daf58c?auto=format&fit=crop&w=600&q=80',
+            hours: '11:00 – 22:00 (售完為止)',
+            note: '💡 人氣外帶冰淇淋大福，有多種口味，口感軟Q。',
             naver: 'https://naver.me/GeURWn5w'
         },
         'ovone-cafe': {
             title: '오브원 ovone 甜點咖啡廳',
-            hours: '⏰ 12:00 – 21:00 (每週一固定公休)',
-            img1: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=600&q=80',
+            hours: '12:00 – 21:00 (每週一固定公休)',
+            note: '💡 海雲台溫馨甜點咖啡廳，適合悠閒下午茶。',
             naver: 'https://naver.me/GuCoLXXL'
         },
         'bada-sand': {
             title: 'Busan Bada Sand 釜山大海奶油夾心餅',
-            hours: '⏰ 11:00 – 19:00 (每日營業)',
-            img1: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=600&q=80',
+            hours: '11:00 – 19:00 (每日營業)',
+            note: '💡 釜山超熱門伴手禮，蜂巢焦糖奶油夾心餅乾。',
             naver: 'https://naver.me/F6lZovoN'
         },
         'grandma-soup': {
             title: '해운대원조할매국밥 海雲台元祖奶奶牛肉湯飯',
-            hours: '⏰ 24小時營業 (全年無休)',
-            img1: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80',
+            hours: '24 小時營業 (全年無休)',
+            note: '💡 釜山在地經典老店，牛肉湯飯濃郁平價，適合早早餐或宵夜。',
             naver: 'https://naver.me/5uIYAf2I'
         },
         'spa-land': {
             title: 'Spa Land 汗蒸幕 (新世界 Centum City)',
-            hours: '⏰ 09:00 – 22:00 (入場限制 4 小時)',
-            img1: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=600&q=80',
+            hours: '09:00 – 22:00 (最後入場 21:00)',
+            note: '💡 憑釜山通行證 Visit Busan Pass 可免費入場，基本體驗時間限制為 4 小時。',
             naver: 'https://naver.me/5Q372Aqt'
         },
         'egg-drop': {
             title: 'Egg Drop 吐司 (海雲台店)',
-            hours: '⏰ 08:00 – 21:00 (每日營業)',
-            img1: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1481070414801-51fd732d7184?auto=format&fit=crop&w=600&q=80',
+            hours: '08:00 – 21:00 (每日營業)',
+            note: '💡 經典爆漿厚煎蛋吐司，非常適合早餐時間。',
             naver: 'https://naver.me/FN747zwP'
         },
         'korean-yakiniku': {
-            title: '韓國美味燒肉 焼肉',
-            hours: '⏰ 11:30 – 23:00 (午晚餐時段開放)',
-            img1: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=600&q=80',
+            title: '韓式燒肉 焼肉',
+            hours: '約 11:30 – 23:00 (視店家而定)',
+            note: '💡 享用正宗韓式烤五花肉與烤牛肉。',
             naver: 'https://naver.me/IgJn2uwe'
         },
         'centum-city': {
             title: '新世界百貨 Centum City 旗艦店',
-            hours: '⏰ 10:30 – 20:00 (假日延長至 20:30)',
-            img1: 'https://images.unsplash.com/photo-1567449303078-57ad995bd301?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?auto=format&fit=crop&w=600&q=80',
+            hours: '10:30 – 20:00 (週五至週日延長至 20:30)',
+            note: '💡 曾獲金氏世界紀錄認證的全球最大百貨公司。',
             naver: 'https://naver.me/5Q372Aqt'
         },
         'christmas-village': {
             title: '新世界 Centum City 聖誕村燈飾',
-            hours: '⏰ 16:00 – 22:00 (點燈時間特展)',
-            img1: 'https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1543589077-47d513165776?auto=format&fit=crop&w=600&q=80',
+            hours: '16:00 – 22:00 (點燈時間)',
+            note: '💡 冬季限定浪漫聖誕造景與節慶燈飾展覽。',
             naver: 'https://naver.me/5Q372Aqt'
         },
         'gamcheon-village': {
             title: '甘川洞文化村 (小王子彩繪村)',
-            hours: '⏰ 09:00 – 18:00 (戶外全天開放)',
-            img1: 'https://images.unsplash.com/photo-1578637387939-43c525550085?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=600&q=80',
+            hours: '09:00 – 18:00 (全天開放，店家約 18 點陸續關門)',
+            note: '💡 與小王子和沙漠狐狸雕像合照的經典打卡景點。',
             naver: 'https://naver.me/Gxk14DQ9'
         },
         'hanbok-rental': {
             title: 'Ibgogage 韓服體驗館',
-            hours: '⏰ 09:30 – 19:00',
-            img1: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=600&q=80',
+            hours: '09:30 – 19:00',
+            note: '💡 提供韓服租借與髮型造型，穿著韓服在甘川洞漫步拍照。',
             naver: 'https://naver.me/IItc6HR9'
         },
         'flip-book': {
             title: '甘川洞文化村 動態手翻書相片館',
-            hours: '⏰ 10:00 – 18:00',
-            img1: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80',
+            hours: '10:00 – 18:00',
+            note: '💡 現場拍攝連續動作並製作成精美實體手翻動畫書。',
             naver: 'https://naver.me/xyTGIESn'
         },
         'songdo-lunch': {
             title: '松島海邊風味午餐',
-            hours: '⏰ 11:30 – 21:00',
-            img1: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80',
+            hours: '11:30 – 21:00 (依餐廳為準)',
+            note: '💡 松島沿岸海景餐廳，可品嚐海鮮烤魚或各類料理。',
             naver: 'https://naver.me/xE6LDdw7'
         },
         'songdo-cable-car': {
             title: '松島海上纜車 & 龍宮空中步道',
-            hours: '⏰ 09:00 – 21:00 (最後售票 20:30)',
-            img1: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=600&q=80',
+            hours: '09:00 – 21:00 (最後售票 20:30)',
+            note: '💡 橫跨海洋的透明水晶纜車，可一路串聯龍宮空中步道散步。',
             naver: 'https://naver.me/xa5RBXes'
         },
         'arte-museum': {
             title: 'ARTE MUSEUM Busan 沉浸式數位藝術館',
-            hours: '⏰ 10:00 – 20:00 (最後入場 19:00)',
-            img1: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80',
+            hours: '10:00 – 20:00 (最後入場 19:00)',
+            note: '💡 大型光影聲光沉浸式展覽，極具視覺震撼感。',
             naver: 'https://naver.me/FIfsvnna'
         },
         'songjeong-pork-soup': {
             title: '松亭三代豬肉湯飯 (西面美食)',
-            hours: '⏰ 24小時營業 (全年無休)',
-            img1: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=600&q=80',
+            hours: '24 小時營業 (全年無休)',
+            note: '💡 米其林推薦級的老字號豬肉湯飯，位於西面美食街。',
             naver: 'https://naver.me/GfCsEbvp'
         },
         'animate-busan': {
             title: '安麗美特 Animate 釜山店 (西面 Fiesta 樂天)',
-            hours: '⏰ 11:00 – 22:00',
-            img1: 'https://images.unsplash.com/photo-1560169897-fc0cdbdfa4d5?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=600&q=80',
+            hours: '11:00 – 22:00',
+            note: '💡 動漫愛好者必訪，位於西面 삼정타워 (Samjung Tower) 內。',
             naver: 'https://naver.me/GfCsEbvp'
         },
         'jeonpo-cafe': {
             title: '田浦咖啡街 (전포카페거리)',
-            hours: '⏰ 各店家約 12:00 – 22:00 營業',
-            img1: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=600&q=80',
+            hours: '約 12:00 – 22:00 (各店家略有不同)',
+            note: '💡 聚集許多質感特色咖啡廳與文創小店的時尚街區。',
             naver: 'https://naver.me/GfCsEbvp'
         },
         'abalone-porridge': {
             title: '大海鮑魚粥 (바다전복죽)',
-            hours: '⏰ 08:30 – 20:00',
-            img1: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=600&q=80',
+            hours: '08:30 – 20:00',
+            note: '💡 濃郁鮮美的韓式鮑魚粥，適合溫暖的早餐。',
             naver: 'https://naver.me/5mI03xa7'
         },
         'capsule-train': {
             title: '海雲台天空膠囊列車 (尾浦－青沙浦)',
-            hours: '⏰ 09:30 – 19:30 (需預約搭乘)',
-            img1: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=600&q=80',
+            hours: '09:30 – 19:30 (需要提前預約段限時車票)',
+            note: '💡 復古可愛彩色車廂，高空欣賞海景熱門路線。',
             naver: 'https://naver.me/Gsj2g76E'
         },
         'cheongsapo': {
             title: '青沙浦 (釜山小鎌倉灌籃高手平交道)',
-            hours: '⏰ 全天開放 (推薦白天拍海景)',
-            img1: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=600&q=80',
+            hours: '全天開放',
+            note: '💡 紅白雙塔燈塔與海岸列車經過的平交道網美拍照熱點。',
             naver: 'https://naver.me/Gsj2g76E'
         },
         'beach-train': {
             title: '海雲台濱海海岸列車',
-            hours: '⏰ 09:30 – 20:00',
-            img1: 'https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80',
+            hours: '09:30 – 20:00',
+            note: '💡 面海設置座椅的地上路面列車，可順暢遊覽海雲台海岸線。',
             naver: 'https://naver.me/Gsj2g76E'
         },
         '31cm-noodle': {
             title: '海雲臺 31公分海鮮刀切麵 (松亭本店)',
-            hours: '⏰ 11:00 – 21:00 (每週一公休)',
-            img1: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=600&q=80',
+            hours: '11:00 – 21:00 (每週一固定公休)',
+            note: '💡 份量驚人的大碗海鮮蛤蜊刀切麵。',
             naver: 'https://naver.me/Gsj2g76E'
         },
         'yonggung-temple': {
             title: '海東龍宮寺 (해동용궁사)',
-            hours: '⏰ 04:30 – 20:30 (全天開放)',
-            img1: 'https://images.unsplash.com/photo-1548115184-bc6544d06a58?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=600&q=80',
+            hours: '04:30 – 20:30 (全天開放)',
+            note: '💡 韓國罕見建造於海岸絕壁上的美麗古寺。',
             naver: 'https://naver.me/5bVsmpgT'
         },
         'skyline-luge': {
             title: 'Skyline Luge 釜山斜坡滑車',
-            hours: '⏰ 10:00 – 19:00',
-            img1: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80',
+            hours: '10:00 – 19:00',
+            note: '💡 刺激好玩的無動力斜坡滑車，適合親友互動競速。',
             naver: 'https://naver.me/IDFUcLWo'
         },
         'lotte-world': {
             title: '釜山樂天世界魔法王國樂園',
-            hours: '⏰ 10:00 – 21:00',
-            img1: 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80',
+            hours: '10:00 – 21:00',
+            note: '💡 大型主題樂園，包含童話城堡與多項刺激遊樂設施。',
             naver: 'https://naver.me/IDFUcLWo'
         },
         'lotte-outlet': {
             title: '樂天 Outlet 購物中心 (東釜山店)',
-            hours: '⏰ 10:30 – 21:00',
-            img1: 'https://images.unsplash.com/photo-1567449303078-57ad995bd301?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?auto=format&fit=crop&w=600&q=80',
+            hours: '10:30 – 21:00',
+            note: '💡 希臘聖托里尼風格造景的大型 Outlet 購物中心。',
             naver: 'https://naver.me/IDFUcLWo'
         },
         'soy-crab': {
-            title: '美味醃醬蟹 & 韓式海鮮鍋',
-            hours: '⏰ 11:00 – 22:00',
-            img1: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=600&q=80',
+            title: '美味醬蟹 & 韓式海鮮鍋',
+            hours: '11:00 – 22:00',
+            note: '💡 品嚐韓國經典偷飯賊白飯小偷——生醬醃蟹與熱騰騰海鮮鍋。',
             naver: 'https://naver.me/GV2keXBL'
         },
         'club-oasis': {
-            title: 'Club Oasis 奢華汗蒸幕 (LCT 樓上)',
-            hours: '⏰ 10:00 – 22:00',
-            img1: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=600&q=80',
+            title: 'Club Oasis 奢華汗蒸幕 (LCT)',
+            hours: '10:00 – 22:00',
+            note: '💡 坐落於海雲台 LCT 內的奢華水上樂園與汗蒸幕設施。',
             naver: 'https://naver.me/F9N4ni3R'
         },
         'huinnyeoul': {
             title: '白淺灘文化村 (흰여울문화마을)',
-            hours: '⏰ 09:00 – 20:00 (全天開放)',
-            img1: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=600&q=80',
+            hours: '09:00 – 20:00 (全天開放)',
+            note: '💡 沿著懸崖海岸線建造的聚落，許多面海咖啡廳與散步步道。',
             naver: 'https://naver.me/F9N4ni3R'
         },
         'bbq-guy': {
             title: '烤肉的男子 (南浦洞韓式燒肉店)',
-            hours: '⏰ 12:00 – 23:00',
-            img1: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=600&q=80',
+            hours: '12:00 – 23:00',
+            note: '💡 店員全程協助桌邊服務烤肉的人氣高評價燒肉店。',
             naver: 'https://naver.me/F9N4ni3R'
         },
         'nampo-shopping': {
             title: '南浦洞光復路時尚購物街',
-            hours: '⏰ 10:30 – 22:00',
-            img1: 'https://images.unsplash.com/photo-1567449303078-57ad995bd301?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?auto=format&fit=crop&w=600&q=80',
+            hours: '10:30 – 22:00 (依各店家為準)',
+            note: '💡 釜山傳統購物商圈，包含許多彩妝、服飾與雜貨品牌。',
             naver: 'https://naver.me/F9N4ni3R'
         },
         'biff-square': {
             title: 'BIFF 釜山國際電影節廣場小吃街',
-            hours: '⏰ 11:00 – 22:00',
-            img1: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80',
+            hours: '11:00 – 22:00',
+            note: '💡 聚集各式釜山街頭美味小吃的地方。',
             naver: 'https://naver.me/F9N4ni3R'
         },
         'gukje-market': {
             title: '國際市場 (傳統韓式保暖棉被館)',
-            hours: '⏰ 09:00 – 20:00 (週日部分店家公休)',
-            img1: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80',
+            hours: '09:00 – 20:00 (週日部分店家公休)',
+            note: '💡 釜山最大規模傳統市場，挑選正宗韓國輕量保暖棉被。',
             naver: 'https://naver.me/F9N4ni3R'
         },
         'olive-young-nampo': {
             title: 'Olive Young 4層樓旗艦店 (南浦洞店)',
-            hours: '⏰ 10:00 – 22:30',
-            img1: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=600&q=80',
+            hours: '10:00 – 22:30',
+            note: '💡 4層樓大型旗艦店，藥妝彩妝品項極為齊全且支援現場退稅。',
             naver: 'https://naver.me/F9N4ni3R'
         },
         'seed-pancake': {
             title: 'BIFF 廣場黑糖堅果餅 (씨앗호떡)',
-            hours: '⏰ 10:00 – 22:00',
-            img1: 'https://images.unsplash.com/photo-1579372786545-d24232daf58c?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80',
+            hours: '10:00 – 22:00',
+            note: '💡 外皮酥脆包裹豐富堅果碎粒與香甜黑糖餡的必吃小吃。',
             naver: 'https://naver.me/F9N4ni3R'
         },
         'haeundae-market': {
             title: '海雲台傳統夜市 (해운대시장)',
-            hours: '⏰ 09:00 – 23:00 (夜市美食多開至晚間)',
-            img1: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80',
+            hours: '09:00 – 23:00 (夜市熱鬧時間為 18:00 後)',
+            note: '💡 海雲台主幹道旁的在地美食市場，含盲鰻、海鮮牛肉餅等。',
             naver: 'https://naver.me/GIIhcPBG'
         },
         'haeundae-beach': {
             title: '海雲台海水浴場地標入口',
-            hours: '⏰ 全天開放',
-            img1: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=600&q=80',
+            hours: '全天開放',
+            note: '💡 釜山最具代表性的沙灘地標海岸公園。',
             naver: 'https://naver.me/GIIhcPBG'
         },
         'marysol-hotel': {
             title: 'Marysol by Haeundae beach 飯店',
-            hours: '⏰ 入住 15:00 / 退房 11:00',
-            img1: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80',
+            hours: '入住 15:00 / 退房 11:00',
+            note: '💡 位於海雲台海水浴場第一排地段便利的飯店。',
             naver: 'https://naver.me/FgHDIhx7'
         },
         'ant-house': {
             title: '螞蟻家辣炒章魚 (海雲台店)',
-            hours: '⏰ 24小時營業 (全年無休)',
-            img1: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=600&q=80',
+            hours: '24 小時營業 (全年無休)',
+            note: '💡 釜山名物「章牛腸」（章魚+牛腸+蝦子）辣炒鍋經典老店。',
             naver: 'https://naver.me/FgHDIhx7'
         },
         'gwanganri-beach': {
             title: '廣安里海水浴場 & 廣安大橋夜景',
-            hours: '⏰ 全天開放 (夜晚燈光秀)',
-            img1: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=600&q=80',
+            hours: '全天開放 (夜晚廣安大橋點燈)',
+            note: '💡 欣賞廣安大橋夜景、沙灘漫步與造訪面海咖啡廳的聖地。',
             naver: 'https://naver.me/Fuz5ZqYE'
         },
         'yacht-holic': {
             title: 'Yacht Holic 廣安里夜景遊艇體驗',
-            hours: '⏰ 13:00 – 22:00 (需提前預約)',
-            img1: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80',
-            img2: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80',
+            hours: '13:00 – 22:00 (需提前預約特定航次)',
+            note: '💡 搭乘遊艇出海近距離欣賞廣安大橋夜景與海上煙火秀。',
             naver: 'https://naver.me/GBF7x95e'
         }
     };
@@ -1800,8 +1749,7 @@
 
         document.getElementById('m-title').innerText = data.title;
         document.getElementById('m-hours').innerText = data.hours;
-        document.getElementById('m-img1').src = data.img1;
-        document.getElementById('m-img2').src = data.img2;
+        document.getElementById('m-note').innerText = data.note;
         document.getElementById('m-naver-btn').href = data.naver;
 
         document.getElementById('modal-overlay').style.display = 'flex';
