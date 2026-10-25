@@ -424,9 +424,6 @@
             font-weight: bold;
         }
 
-        /* ----------------------------------------------------
-           大分類外框卡片與垂直時間軸融合
-           ---------------------------------------------------- */
         .category-group-card {
             background: #FFFFFF;
             border-radius: 18px;
@@ -498,7 +495,6 @@
             line-height: 1.2;
         }
 
-        /* 可點擊的行程卡片樣式 */
         .v-timeline-card {
             background: var(--bg-color);
             border-radius: 10px;
@@ -563,9 +559,7 @@
         .day-content { display: none; }
         .day-content.active { display: block; }
 
-        /* ----------------------------------------------------
-           彈出視窗 Modal 樣式
-           ---------------------------------------------------- */
+        /* 彈出視窗 Modal 樣式 */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -1469,7 +1463,7 @@
                         <button class="trans-btn" style="width:100%" onclick="setTranslate('您好，謝謝您！', '안녕하세요 / 감사합니다 (安妞哈誰唷 / 康沙哈密達)')">👋 您好 / 謝謝您</button>
                         <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請問一下......', '실례합니다 / 저기요 (失禮哈密達 / 揪基唷)')">🗣 不好意思，請問一下</button>
                         <button class="trans-btn" style="width:100%" onclick="setTranslate('真的非常對不起、不好意思。', '죄송합니다 (崔宋哈密達)')">🙇 真不好意思 / 很抱歉</button>
-                        <button class="trans-btn" style="width:100%" onclick="setTranslate('살려주세요 / 도와주세요! (薩ㄌ contest主些唷 / 托瓦主些唷！)')">🚨 拜託請幫幫我！緊急</button>
+                        <button class="trans-btn" style="width:100%" onclick="setTranslate('살려주세요 / 도와주세요! (薩ㄌㄧㄡ主些唷 / 托瓦主些唷！)')">🚨 拜託請幫幫我！緊急</button>
                     </div>
                 </div>
             </div>
@@ -1485,17 +1479,17 @@
         <div class="modal-title" id="m-title">景點名稱</div>
         <div class="modal-hours" id="m-hours">⏰ 營業時間：加載中</div>
         <div class="modal-img-container">
-            <img id="m-img1" class="modal-img" src="" alt="照片1">
-            <img id="m-img2" class="modal-img" src="" alt="照片2">
+            <img id="m-img1" class="modal-img" src="" alt="真實代表圖1">
+            <img id="m-img2" class="modal-img" src="" alt="真實代表圖2">
         </div>
-        <a id="m-naver-btn" href="#" target="_blank" class="modal-nav-btn">🗺️ 開啟 Naver 地圖導航</a>
+        <a id="m-naver-btn" href="#" target="_blank" class="modal-nav-btn">🗺️ 開啟 Naver 地圖看最新照片與導航</a>
     </div>
 </div>
 
 <script>
     let currentDay = 1;
 
-    // 景點與美食資料庫 (包含營業時間、2張高畫質精選照片、Naver連結)
+    // 景點與美食資料庫 (改用精準正宗的廣安里夜景、海雲台沙灘、正宗韓式辣炒章魚鍋與烘焙圖)
     const placeData = {
         'salt-bread': {
             title: '自然島鹽麵包 (자연도소금빵)',
