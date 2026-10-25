@@ -292,14 +292,14 @@
             letter-spacing: 0.5px;
         }
 
-        /* 纜車時間軸導覽列 */
+        /* 纜車時間軸導覽列（拉開間距避免擋住日期） */
         .timeline-nav-container {
             display: flex;
             align-items: center;
             background: var(--card-bg);
             border: 1px solid rgba(212, 163, 115, 0.3);
             border-radius: 16px;
-            padding: 10px 8px;
+            padding: 14px 8px 12px 8px;
             margin-bottom: 20px;
             box-shadow: 0 4px 12px rgba(212, 163, 115, 0.08);
             position: relative;
@@ -330,7 +330,7 @@
             flex: 1;
             overflow-x: auto;
             position: relative;
-            padding: 10px 5px 5px 5px;
+            padding: 15px 5px 5px 5px; /* 增加上方內距給纜車空間 */
             scrollbar-width: none;
         }
         .timeline-track-wrapper::-webkit-scrollbar { display: none; }
@@ -346,7 +346,7 @@
 
         .timeline-line {
             position: absolute;
-            top: 22px;
+            top: 28px; /* 往下移以配合軌道位置 */
             left: 20px;
             right: 20px;
             height: 3px;
@@ -356,7 +356,7 @@
 
         .cable-car-marker {
             position: absolute;
-            top: -10px;
+            top: -6px; /* 往上懸掛，絕不擋到日期 */
             left: 0;
             width: 38px;
             height: 42px;
@@ -1014,6 +1014,12 @@
                             <div class="v-timeline-dot"></div>
                             <div class="v-timeline-card"><div class="v-card-title">走走逛逛 甘川洞文化村</div></div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="category-group-card">
+                    <div class="category-header">🚡 松島與藝術展</div>
+                    <div class="v-timeline">
                         <div class="v-timeline-item">
                             <div class="v-timeline-time">12:15</div>
                             <div class="v-timeline-dot"></div>
@@ -1024,12 +1030,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="category-group-card">
-                    <div class="category-header">🚡 松島與藝術展</div>
-                    <div class="v-timeline">
                         <div class="v-timeline-item">
                             <div class="v-timeline-time">13:30</div>
                             <div class="v-timeline-dot"></div>
@@ -1297,7 +1297,13 @@
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         document.getElementById('page-' + pageNum).classList.add('active');
         document.querySelectorAll('.nav-tab').forEach(n => n.classList.remove('active'));
-        event.currentTarget.classList.add('active');
+        
+        // 修正電腦版與手機版點擊分頁的問題
+        const tabs = document.querySelectorAll('.nav-tab');
+        if(tabs[pageNum - 1]) {
+            tabs[pageNum - 1].classList.add('active');
+        }
+        
         document.getElementById('header-title').innerText = title;
         
         if(pageNum === 3) {
