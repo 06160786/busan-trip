@@ -292,14 +292,16 @@
             letter-spacing: 0.5px;
         }
 
-        /* 纜車時間軸導覽列（拉開間距避免擋住日期） */
+        /* ----------------------------------------------------
+           完美對齊、不擋日子的纜車時間軸導覽列
+           ---------------------------------------------------- */
         .timeline-nav-container {
             display: flex;
             align-items: center;
             background: var(--card-bg);
             border: 1px solid rgba(212, 163, 115, 0.3);
             border-radius: 16px;
-            padding: 14px 8px 12px 8px;
+            padding: 12px 8px;
             margin-bottom: 20px;
             box-shadow: 0 4px 12px rgba(212, 163, 115, 0.08);
             position: relative;
@@ -330,7 +332,7 @@
             flex: 1;
             overflow-x: auto;
             position: relative;
-            padding: 15px 5px 5px 5px; /* 增加上方內距給纜車空間 */
+            padding: 5px;
             scrollbar-width: none;
         }
         .timeline-track-wrapper::-webkit-scrollbar { display: none; }
@@ -339,47 +341,49 @@
             position: relative;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
             min-width: 340px;
             padding: 0 15px;
         }
 
+        /* 軌道橫線（穿過圓點中央） */
         .timeline-line {
             position: absolute;
-            top: 28px; /* 往下移以配合軌道位置 */
+            top: 11px;
             left: 20px;
             right: 20px;
-            height: 3px;
+            height: 2px;
             background: #E3DCD0;
             z-index: 1;
         }
 
+        /* 懸浮於日期上方的纜車標籤框 */
         .cable-car-marker {
             position: absolute;
-            top: -6px; /* 往上懸掛，絕不擋到日期 */
+            top: -24px;
             left: 0;
-            width: 38px;
-            height: 42px;
+            width: 44px;
+            height: 48px;
             background: var(--card-bg);
             border: 2px solid var(--accent-pink);
-            border-radius: 10px;
+            border-radius: 12px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.12);
             z-index: 5;
             transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
         }
         .cable-car-marker .car-icon {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             line-height: 1;
         }
         .cable-car-marker .car-roof {
             position: absolute;
             top: -6px;
-            width: 14px;
+            width: 16px;
             height: 4px;
             background: var(--accent-pink);
             border-radius: 2px;
@@ -394,14 +398,14 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 4px;
+            padding-top: 2px;
         }
         .node-dot {
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             background: #D3C5B4;
             border-radius: 50%;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             transition: background 0.2s;
         }
         .node-date {
@@ -415,9 +419,9 @@
             color: var(--text-sub);
             white-space: nowrap;
         }
+        /* 當前選中日期的字體樣式（不需變動原有點擊狀態，由纜車框住） */
         .timeline-node.active .node-dot {
             background: var(--accent-pink);
-            transform: scale(1.3);
         }
         .timeline-node.active .node-date,
         .timeline-node.active .node-week {
@@ -1085,11 +1089,10 @@
                 </div>
             </div>
 
-            <!-- Day 5 (12/03) -->
+            <!-- Day 5 (12/03) - 已拆除大分類外框，改為純項目排列 -->
             <div id="day-5" class="day-content">
-                <div class="category-group-card">
-                    <div class="category-header">✨ 奢華休閒美饌</div>
-                    <div class="v-timeline">
+                <div class="cream-card">
+                    <div class="v-timeline" style="margin-top: 0;">
                         <div class="v-timeline-item">
                             <div class="v-timeline-time">8:30</div>
                             <div class="v-timeline-dot"></div>
@@ -1298,7 +1301,6 @@
         document.getElementById('page-' + pageNum).classList.add('active');
         document.querySelectorAll('.nav-tab').forEach(n => n.classList.remove('active'));
         
-        // 修正電腦版與手機版點擊分頁的問題
         const tabs = document.querySelectorAll('.nav-tab');
         if(tabs[pageNum - 1]) {
             tabs[pageNum - 1].classList.add('active');
@@ -1349,6 +1351,7 @@
             const nodeWidth = node.offsetWidth;
             const carWidth = car.offsetWidth;
             
+            // 讓纜車精準框在日期上方
             const targetLeft = nodeLeft + (nodeWidth / 2) - (carWidth / 2);
             car.style.left = targetLeft + 'px';
 
