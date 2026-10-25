@@ -1377,3 +1377,36 @@
         const linkBtn = document.getElementById('google-trans-link');
         output.innerText = kr;
         linkBtn.style.display = 'none';
+    }
+
+    function handleCustomTranslate() {
+        const text = document.getElementById('user-translate-input').value.trim();
+        const output = document.getElementById('korean-output');
+        const linkBtn = document.getElementById('google-trans-link');
+        
+        if(!text) {
+            output.innerText = '點選下方分類按鈕，或輸入文字';
+            linkBtn.style.display = 'none';
+            return;
+        }
+
+        const dict = {
+            '你好': '안녕하세요 (安妞哈誰唷)',
+            '謝謝': '감사합니다 (康沙哈密達)',
+            '多少錢': '얼마예요? (歐媽耶唷？)',
+            '哈哈哈': 'ㅋㅋ (科科)'
+        };
+
+        if(dict[text]) {
+            output.innerText = dict[text];
+            linkBtn.style.display = 'none';
+        } else {
+            output.innerText = `自訂文字：「${text}」`;
+            linkBtn.href = `https://translate.google.com/?sl=zh-TW&tl=ko&text=${encodeURIComponent(text)}`;
+            linkBtn.style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>
