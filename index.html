@@ -13,6 +13,7 @@
             --text-main: #5C5346;
             --text-sub: #8C8275;
             --border-radius: 16px;
+            --accent-pink: #E07A5F;
         }
 
         * {
@@ -111,13 +112,8 @@
             padding-bottom: 80px;
         }
 
-        .page {
-            display: none;
-        }
-
-        .page.active {
-            display: block;
-        }
+        .page { display: none; }
+        .page.active { display: block; }
 
         h2 {
             font-size: 1.3rem;
@@ -296,7 +292,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* 行程樣式 */
+        /* 行程切換分頁 */
         .day-tabs {
             display: flex;
             overflow-x: auto;
@@ -324,6 +320,72 @@
         }
         .day-content { display: none; }
         .day-content.active { display: block; }
+
+        /* 地點卡片樣式 */
+        .location-card {
+            background: #FFFFFF;
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 14px;
+            border: 1px solid rgba(212, 163, 115, 0.25);
+            box-shadow: 0 3px 10px rgba(212, 163, 115, 0.06);
+        }
+        .location-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 1.05rem;
+            font-weight: bold;
+            color: #4A3F35;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary-light);
+            margin-bottom: 12px;
+        }
+        .location-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .location-item {
+            padding: 6px 0;
+            font-size: 0.92rem;
+            line-height: 1.5;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            border-bottom: 1px dashed rgba(212, 163, 115, 0.15);
+        }
+        .location-item:last-child {
+            border-bottom: none;
+        }
+        .item-text {
+            flex: 1;
+        }
+        .timed-badge {
+            background-color: #FCEADE;
+            color: var(--accent-pink);
+            font-size: 0.78rem;
+            font-weight: bold;
+            padding: 2px 7px;
+            border-radius: 6px;
+            margin-right: 6px;
+            display: inline-block;
+        }
+        .naver-link {
+            display: inline-block;
+            font-size: 0.75rem;
+            color: #2db400;
+            background: #eef9ee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-left: 6px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .naver-link:hover {
+            background: #2db400;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -438,9 +500,8 @@
             </div>
         </div>
 
-        <!-- 頁面 3：行程說明 -->
+        <!-- 頁面 3：行程說明（按地點區分） -->
         <div id="page-3" class="page">
-            <!-- 宣示標語 -->
             <div class="oath-banner">
                 <span class="oath-text">明知山有虎，偏往釜山行</span>
             </div>
@@ -454,22 +515,316 @@
                 <button class="day-tab-btn" onclick="switchDay(6)">Day 6 12/04</button>
             </div>
 
+            <!-- Day 1按地點 -->
             <div id="day-1" class="day-content active">
-                <div class="cream-card" style="text-align: center; padding: 30px;">
-                    <p style="color: var(--text-sub);">Day 1 行程詳細資訊準備中...</p>
-                    <p style="font-size: 0.85rem; color: var(--primary-color); margin-top: 8px;">未來您可以把 Naver 導航連結直接加在這裡！</p>
+                <div class="location-card">
+                    <div class="location-header">🛫 桃園機場 / 交通</div>
+                    <ul class="location-list">
+                        <li class="location-item">
+                            <span class="item-text"><span class="timed-badge">⏰ 05:40</span>第一航廈集合報到</span>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text"><span class="timed-badge">⏰ 07:40</span>起飛 (CI188)</span>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text"><span class="timed-badge">⏰ 10:50</span>落地釜山 (PUS)</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-header">🛬 金海機場 (PUS)</div>
+                    <ul class="location-list">
+                        <li class="location-item">
+                            <span class="item-text">領取 釜山Pass 實體票 / 換錢</span>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text"><span class="timed-badge">⏰ 最晚 13:10</span>搭機場公車前往海雲台</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-header">🌊 海雲台 / 飯店</div>
+                    <ul class="location-list">
+                        <li class="location-item">
+                            <span class="item-text"><span class="timed-badge">⏰ 14:10</span>抵達海雲台海水浴場入口</span>
+                            <a href="https://naver.me/GIlhCPBG" target="_blank" class="naver-link">🔗 Naver</a>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text"><span class="timed-badge">⏰ 15:00</span>Check in：Marysol by Haeundae beach</span>
+                            <a href="https://naver.me/FgHDlhx7" target="_blank" class="naver-link">🔗 Naver</a>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text">螞蟻家辣炒章魚 (等待入住期間)</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-header">⛵ 廣安里 / 碼頭</div>
+                    <ul class="location-list">
+                        <li class="location-item">
+                            <span class="item-text"><span class="timed-badge">⏰ 19:00</span>Yacht Holic 遊艇</span>
+                            <a href="https://naver.me/GBF7x95e" target="_blank" class="naver-link">🔗 Naver</a>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text">廣安里海灘、商店街走走逛逛</span>
+                            <a href="https://naver.me/Fuz5ZqYE" target="_blank" class="naver-link">🔗 Naver</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div id="day-2" class="day-content"><div class="cream-card" style="text-align: center; padding: 30px;"><p style="color: var(--text-sub);">Day 2 行程準備中...</p></div></div>
-            <div id="day-3" class="day-content"><div class="cream-card" style="text-align: center; padding: 30px;"><p style="color: var(--text-sub);">Day 3 行程準備中...</p></div></div>
-            <div id="day-4" class="day-content"><div class="cream-card" style="text-align: center; padding: 30px;"><p style="color: var(--text-sub);">Day 4 行程準備中...</p></div></div>
-            <div id="day-5" class="day-content"><div class="cream-card" style="text-align: center; padding: 30px;"><p style="color: var(--text-sub);">Day 5 行程準備中...</p></div></div>
-            <div id="day-6" class="day-content"><div class="cream-card" style="text-align: center; padding: 30px;"><p style="color: var(--text-sub);">Day 6 行程準備中...</p></div></div>
+
+            <!-- Day 2按地點 -->
+            <div id="day-2" class="day-content">
+                <div class="location-card">
+                    <div class="location-header">🌊 影島區域</div>
+                    <ul class="location-list">
+                        <li class="location-item">
+                            <span class="item-text"><span class="timed-badge">⏰ 09:30</span>白淺灘文化村散策</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-header">🛍️ 南浦洞 / 國際市場</div>
+                    <ul class="location-list">
+                        <li class="location-item">
+                            <span class="item-text">烤肉的男子 (ランチ/晚餐)</span>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text">國際市場買棉被</span>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text">南浦洞商圈逛街</span>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text">BIFF 廣場小吃美食</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-header">🌙 海雲台</div>
+                    <ul class="location-list">
+                        <li class="location-item">
+                            <span class="item-text">海雲台夜市逛街吃小吃</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Day 3按地點 -->
+            <div id="day-3" class="day-content">
+                <div class="location-card">
+                    <div class="location-header">🚃 海雲台 / 青沙浦</div>
+                    <ul class="location-list">
+                        <li class="location-item">
+                            <span class="item-text">大海鮑魚粥 (早餐)</span>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text"><span class="timed-badge">⏰ 11:00</span>搭乘膠囊列車</span>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text">釜山小鎌倉 (青沙浦拍照)</span>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text">搭乘海岸列車</span>
+                            <a href="https://naver.me/Gsj2..." target="_blank" class="naver-link">🔗 Naver</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-header">🍜 松亭 / 機張區域</div>
+                    <ul class="location-list">
+                        <li class="location-item">
+                            <span class="item-text">海雲臺31公分海鮮刀切麵 松亭本店</span>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text">東海龍宮寺觀光</span>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text">Skyline Luge 斜坡滑車</span>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text">釜山樂天世界冒險樂園</span>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text">樂天 Outlet 購物</span>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text">Club D Oasis 汗蒸幕放鬆</span>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text">晚餐：醬油蟹</span>
+                            <a href="https://naver.me/GV2keXBL" target="_blank" class="naver-link">🔗 Naver</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Day 4按地點 -->
+            <div id="day-4" class="day-content">
+                <div class="location-card">
+                    <div class="location-header">🎨 甘川洞文化村</div>
+                    <ul class="location-list">
+                        <li class="location-item">
+                            <span class="item-text"><span class="timed-badge">⏰ 09:00</span>先拍小王子景點</span>
+                            <span>
+                                <a href="https://naver.me/Gxk1..." target="_blank" class="naver-link">🔗 Link1</a>
+                                <a href="https://naver.me/G58M..." target="_blank" class="naver-link">🔗 Link2</a>
+                                <a href="https://naver.me/5Q37..." target="_blank" class="naver-link">🔗 Link3</a>
+                            </span>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text"><span class="timed-badge">⏰ 10:00</span>lbgogage 租韓服 & 手翻書</span>
+                            <span>
+                                <a href="https://naver.me/Iltc6..." target="_blank" class="naver-link">🔗 韓服</a>
+                                <a href="https://naver.me/xyTGIESn" target="_blank" class="naver-link">🔗 手翻書</a>
+                            </span>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text"><span class="timed-badge">⏰ 11:15</span>歸還韓服</span>
+                            <a href="https://naver.me/Iltc6HR9" target="_blank" class="naver-link">🔗 Naver</a>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text">逛甘川洞文化村店舖 (至 12:00)</span>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text"><span class="timed-badge">⏰ 12:15</span>甘川洞午餐</span>
+                            <a href="https://naver.me/xE6LDw7" target="_blank" class="naver-link">🔗 Naver</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-header">🚡 松島區域</div>
+                    <ul class="location-list">
+                        <li class="location-item">
+                            <span class="item-text"><span class="timed-badge">⏰ 13:30</span>松島海上纜車 + 松島龍宮空中步道</span>
+                            <a href="https://naver.me/xa5RBXes" target="_blank" class="naver-link">🔗 Naver</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-header">🛍️ 西面商圈</div>
+                    <ul class="location-list">
+                        <li class="location-item">
+                            <span class="item-text"><span class="timed-badge">⏰ 15:30</span>TE MUSEUM Bus</span>
+                            <a href="https://naver.me/Flfsvnna" target="_blank" class="naver-link">🔗 Naver</a>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text">西面商圈逛街區</span>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text">松亭三代豬肉湯飯</span>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text">Animate 釜山店 (安麗美特)</span>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text">西面樂天百貨</span>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text">田浦咖啡街散步</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Day 5按地點 -->
+            <div id="day-5" class="day-content">
+                <div class="location-card">
+                    <div class="location-header">🥪 早餐區</div>
+                    <ul class="location-list">
+                        <li class="location-item">
+                            <span class="item-text"><span class="timed-badge">⏰ 08:30</span>Egg Drop 吐司早餐</span>
+                            <a href="https://naver.me/FN747zwP" target="_blank" class="naver-link">🔗 Naver</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-header">♨️ Centum City 釜山新世界</div>
+                    <ul class="location-list">
+                        <li class="location-item">
+                            <span class="item-text">Spa Land 汗蒸幕體驗 (限時4小時)</span>
+                            <a href="https://naver.me/5Q372Aqt" target="_blank" class="naver-link">🔗 Naver</a>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text">韓式燒肉午餐 / 晚餐</span>
+                            <a href="https://naver.me/IgJn..." target="_blank" class="naver-link">🔗 Naver</a>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text">新世界百貨 Centum City 逛街</span>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text"><span class="timed-badge">⏰ 16:00-22:00</span>新世界聖誕村拍燈飾</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Day 6按地點 -->
+            <div id="day-6" class="day-content">
+                <div class="location-card">
+                    <div class="location-header">🏨 海雲台飯店 / 寄放 luggage</div>
+                    <ul class="location-list">
+                        <li class="location-item">
+                            <span class="item-text">早上退房、寄放行李</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-header">🍞 海雲台美食巡禮</div>
+                    <ul class="location-list">
+                        <li class="location-item">
+                            <span class="item-text">海雲台元祖老奶奶湯飯 (해운대원조할매국밥)</span>
+                            <a href="https://naver.me/5ulY..." target="_blank" class="naver-link">🔗 Naver</a>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text">自然島鹽麵包</span>
+                            <a href="https://naver.me/xrSQ..." target="_blank" class="naver-link">🔗 Naver</a>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text"><span class="timed-badge">⏰ 12:00</span>老虎冰淇淋大福</span>
+                            <a href="https://naver.me/..." target="_blank" class="naver-link">🔗 Naver</a>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text">오브원 ovone 咖啡廳</span>
+                            <a href="https://naver.me/GuCo..." target="_blank" class="naver-link">🔗 Naver</a>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text">Busan Bada San (釜山大海三明治)</span>
+                            <a href="https://naver.me/F6IZ..." target="_blank" class="naver-link">🔗 Naver</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-header">🛫 飯店取件 / 歸途</div>
+                    <ul class="location-list">
+                        <li class="location-item">
+                            <span class="item-text"><span class="timed-badge">⏰ 16:00</span>返回飯店領行李</span>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text"><span class="timed-badge">⏰ 17:00</span>抵達金海機場、機場吃晚餐</span>
+                        </li>
+                        <li class="location-item">
+                            <span class="item-text"><span class="timed-badge">⏰ 19:50</span>搭乘 CI187 班機返回台北</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
 
         <!-- 頁面 4：翻譯 -->
         <div id="page-4" class="page">
-            <!-- 置頂固定區塊 -->
             <div class="sticky-translate-box">
                 <div class="cream-card" style="margin-bottom: 0; box-shadow: 0 6px 20px rgba(212, 163, 115, 0.15);">
                     <p style="color: var(--text-sub); margin-bottom: 6px; font-size: 0.85rem;">안녕하세요~ 대만에서 왔어요 ❤️ 安妞～我來自台灣</p>
@@ -479,9 +834,7 @@
                 </div>
             </div>
 
-            <!-- 下方分類按鈕區域 -->
             <div style="margin-top: 15px;">
-                <!-- 分類一：用餐點餐 -->
                 <div class="cream-card">
                     <div class="section-title">🍽 用餐點餐與人數</div>
                     <div class="trans-grid" style="margin-bottom: 8px;">
@@ -503,7 +856,6 @@
                     </div>
                 </div>
 
-                <!-- 分類二：購物與免稅 -->
                 <div class="cream-card">
                     <div class="section-title">🛍️ 購物與免稅 Tax Free</div>
                     <div style="display: flex; flex-direction: column; gap: 8px;">
@@ -515,7 +867,6 @@
                     </div>
                 </div>
 
-                <!-- 分類三：問路與交通 -->
                 <div class="cream-card">
                     <div class="section-title">🗺️ 問路與交通</div>
                     <div style="display: flex; flex-direction: column; gap: 8px;">
@@ -526,12 +877,11 @@
                     </div>
                 </div>
 
-                <!-- 分類四：基本禮貌與應急 -->
                 <div class="cream-card">
                     <div class="section-title">✨ 基本禮貌與應急</div>
                     <div style="display: flex; flex-direction: column; gap: 8px;">
                         <button class="trans-btn" style="width:100%" onclick="setTranslate('您好，謝謝您！', '안녕하세요 / 감사합니다 (安妞哈誰唷 / 康沙哈密達)')">👋 您好 / 謝謝您</button>
-                        <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請問一下......', '실례합니다 / 저기요 (失禮哈密達 / 揪基唷)')">🗣️️ 不好意思，請問一下</button>
+                        <button class="trans-btn" style="width:100%" onclick="setTranslate('不好意思，請問一下......', '실례합니다 / 저기요 (失禮哈密達 / 揪基唷)')">🗣 不好意思，請問一下</button>
                         <button class="trans-btn" style="width:100%" onclick="setTranslate('真的非常對不起、不好意思。', '죄송합니다 (崔宋哈密達)')">🙇 真不好意思 / 很抱歉</button>
                         <button class="trans-btn" style="width:100%" onclick="setTranslate('拜託請幫幫我！', '살려주세요 / 도와주세요! (薩ㄌㄧㄡ主些唷 / 托瓦主些唷！)')">🚨 拜託請幫幫我！緊急</button>
                     </div>
